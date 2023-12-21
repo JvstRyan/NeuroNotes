@@ -25,7 +25,7 @@ const App = () => {
     }
 
     fetchTasks()
-  }, [])
+  }, [tasks])
 
 
   return (
@@ -35,7 +35,7 @@ const App = () => {
     </Heading>
     <TaskForm />
     {
-      tasks.map((item) => <TaskItem key={item._id} task={item.name} />)
+      tasks.map((item) => <TaskItem key={item._id} task={item.name} _id={item._id} />)
     }
     </SimpleGrid>
     
