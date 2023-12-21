@@ -1,7 +1,7 @@
 import { Card, CardBody, Flex, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
-import { CiEdit } from "react-icons/ci";
+import EditModal from "./EditModal";
 
 
 interface Props {
@@ -31,7 +31,7 @@ const TaskItem = ({task, _id}: Props) => {
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Text fontWeight={'bold'} fontSize={'18px'}>{task}</Text>
           <Flex gap={'1rem'}>
-          <CiEdit cursor={'pointer'} size={'26px'}/>
+          <EditModal task={task} _id={_id} />
           <RxCross2 onClick={() => handleDelete(_id)} cursor={'pointer'} size={'26px'}/>
           </Flex>
           </Flex>
