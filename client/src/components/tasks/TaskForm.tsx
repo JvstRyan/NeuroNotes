@@ -29,13 +29,13 @@ const TaskForm = () => {
             h={"3rem"}
             variant={'flushed'}
             focusBorderColor={'black'}
-            placeholder="Enter your daily task"
-            w={"30rem"}
+            placeholder="Enter your daily tasks📃"
+            w={{base: '24rem', sm:  '28rem', md: '35rem'}}
             value={namedTask}
             onChange={(e) => setNamedTask(e.target.value)}
           ></Input>
           <Spacer h={"1rem"} />
-          <Button _active={{transform: 'scale(0.98)', bg: 'white'}} _hover={{bg: 'white'}} variant={'outline'} border={'2px solid black'} w={"30rem"} h={"3rem"} type="submit">
+          <Button _active={{transform: 'scale(0.98)', bg: 'white'}} _hover={{bg: 'white'}} variant={'outline'} border={'2px solid black'} w={{base: '24rem', sm:  '28rem', md: '35rem'}} h={"3rem"} type="submit">
           <FaPlus />
           </Button>
         </FormControl>

@@ -5,7 +5,7 @@ const goalSchema = mongoose.Schema({
         type: String,
         required: [true, 'Must provide name' ],
         trim: true,
-        maxlength: [100, 'Goal connot be longer than 100 charachters ' ]
+        maxlength: [30, 'Goal connot be longer than 100 charachters ' ]
     },
     createdAt: {
         type: Date,
