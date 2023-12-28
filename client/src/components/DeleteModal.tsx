@@ -34,7 +34,7 @@ function EditModal({ _id, task}: Props) {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Edit Modal</ModalHeader>
+            <ModalHeader>Delete Modal</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
             <Text>Are you sure you want to delete <b>"{task}"</b> ?</Text>

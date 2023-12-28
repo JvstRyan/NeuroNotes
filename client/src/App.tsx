@@ -13,7 +13,7 @@ const App = () => {
   const [tasks, setTasks] = useState<TaskData[]>([]);
 
   useEffect(() => {
-    const fetchTasks = async () => {
+    const fetchTasks = async () =>  {
       try {
         const response = await axios.get("http://localhost:5000/api/tasks");
         setTasks(response.data.tasks);

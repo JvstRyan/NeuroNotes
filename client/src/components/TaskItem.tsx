@@ -1,8 +1,7 @@
-import { Card, CardBody, Flex, Text } from "@chakra-ui/react";
-import axios from "axios";
-import { RxCross2 } from "react-icons/rx";
+import { Card, CardBody, Checkbox, Flex, Text } from "@chakra-ui/react";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import { useState } from "react";
 
 
 interface Props {
@@ -12,12 +11,20 @@ interface Props {
 
 const TaskItem = ({task, _id}: Props) => {
 
+const [isChecked, setIsChecked] = useState(false)
+const handleCheckBox = () => {
+  setIsChecked(!isChecked)
+}
+
   return (
     <>
       <Card w={'30rem'} mt={'1rem'} borderRadius={'10px'}>
         <CardBody>
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
-          <Text fontWeight={'bold'} fontSize={'18px'}>{task}</Text>
+          <Flex gap={'1rem'} align={'center'} justify={'center'}>
+          <Checkbox onChange={handleCheckBox} />
+          <Text as={isChecked ? 'del' : 'b'}  fontSize={'18px'}>{task}</Text>
+          </Flex>
           <Flex gap={'1rem'}>
           <EditModal task={task} _id={_id} />
           <DeleteModal task={task} _id={_id} />
