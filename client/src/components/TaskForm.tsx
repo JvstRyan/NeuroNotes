@@ -29,7 +29,7 @@ const TaskForm = () => {
             h={"3rem"}
             variant={'flushed'}
             focusBorderColor={'black'}
-            placeholder="Enter your task"
+            placeholder="Enter your daily task"
             w={"30rem"}
             value={namedTask}
             onChange={(e) => setNamedTask(e.target.value)}

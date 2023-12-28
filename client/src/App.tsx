@@ -1,8 +1,9 @@
-import { Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, GridItem, SimpleGrid } from "@chakra-ui/react";
 import TaskForm from "./components/TaskForm";
 import TaskItem from "./components/TaskItem";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NavBar from "./components/NavBar";
 
 interface TaskData {
   _id: string;
@@ -27,18 +28,23 @@ const App = () => {
   }, [tasks]);
 
   return (
+    <>
+    <NavBar />
     <SimpleGrid
-      mb={"2rem"}
+      columns={{sm: 1, md:2}}
       justifyItems={"center"}
       placeContent={"center"}
-      mt={"10rem"}
+      mb={"2rem"}
     >
-      <Heading>Task Manager</Heading>
+      <GridItem colSpan={1}>
       <TaskForm />
       {tasks.map((item) => (
         <TaskItem key={item._id} task={item.name} _id={item._id} />
       ))}
+      </GridItem>
+      
     </SimpleGrid>
+    </>
   );
 };
 
