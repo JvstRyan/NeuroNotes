@@ -1,4 +1,4 @@
-import { GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
 import TaskForm from "./components/tasks/TaskForm";
 import TaskItem from "./components/tasks/TaskItem";
 import axios from "axios";
@@ -53,21 +53,27 @@ const App = () => {
       columns={{sm: 1, md:2}}
       placeContent={"center"}
       justifyItems={'center'}
-      mb={"2rem"}
+      alignItems={'start'}
       spacing={20}
+      
+      mb={"2rem"}
     >
-      <GridItem colSpan={1} placeSelf={{sm: 'center', md: 'end'}}>
+     <GridItem colSpan={1} placeSelf={{base: 'center', md: 'end'}} minH={'100%'}>
+    <Flex direction="column" alignItems="center">
       <TaskForm />
       {tasks.map((item) => (
         <TaskItem key={item._id} task={item.name} _id={item._id} />
       ))}
-      </GridItem>
-      <GridItem  colSpan={1} placeSelf={{sm: 'center', md: 'start'}}>
+    </Flex>
+  </GridItem>
+  <GridItem colSpan={1} placeSelf={{base: 'center', md: 'start'}}  minH={'100%'}>
+    <Flex direction="column" justifyContent="flex-start" alignItems="center">
       <GoalForm />
       {goals.map((item) => (
         <GoalItem key={item._id} goal={item.goal} _id={item._id} />
       ))}
-      </GridItem>
+    </Flex>
+  </GridItem>
       
     </SimpleGrid>
     </>

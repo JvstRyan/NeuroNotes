@@ -26,7 +26,7 @@ const handleCheckBox = () => {
           <Text as={isChecked ? 'del' : 'b'} fontWeight={'600'}  fontSize={'18px'}>{task}</Text>
           </Flex>
           <Flex gap={'1rem'}>
-          <EditModal task={task} _id={_id} />
+         {!isChecked && <EditModal task={task} _id={_id} /> }
           <DeleteModal task={task} _id={_id} />
           </Flex>
           </Flex>

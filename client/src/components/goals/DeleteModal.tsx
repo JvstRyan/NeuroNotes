@@ -4,22 +4,22 @@ import { RxCross2 } from "react-icons/rx"
 
 interface Props {
     _id: string
-    task: string
+    goal: string
 }
 
-function DeleteModal({ _id, task}: Props) {
+function DeleteModal({ _id, goal}: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const deleteTask = async (_id: string) => {
+    const deleteGoal = async (_id: string) => {
         try {
-        await axios.delete(`http://localhost:5000/api/tasks/${_id}`)
+        await axios.delete(`http://localhost:5000/api/goals/${_id}`)
         } catch(error) {
             console.error(`${error}`)
         }
     }
    
     const handleDelete = (id: string) => {
-        deleteTask(id)
+        deleteGoal(id)
         onClose()
     }
 
@@ -37,7 +37,7 @@ function DeleteModal({ _id, task}: Props) {
             <ModalHeader>Delete Modal</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-            <Text>Are you sure you want to delete <b>"{task}"</b> ?</Text>
+            <Text>Are you sure you want to delete <b>"{goal}"</b> ?</Text>
             </ModalBody>
             <ModalFooter>
               <Button variant='ghost' mr={3} onClick={onClose}>
