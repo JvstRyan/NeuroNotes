@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
+import NotesCard from "./components/notes/NotesCard";
+import NotesModal from "./components/notes/NotesModal";
 
 interface TaskData {
   _id: string;
@@ -74,8 +76,20 @@ const App = () => {
       ))}
     </Flex>
   </GridItem>
-      
     </SimpleGrid>
+    <Flex
+      justify={'center'}
+      align={'center'}
+      gap={'1.5rem'}
+      flexWrap={'wrap'}
+    >
+    <NotesModal />
+    <NotesModal />
+    <NotesModal />
+    <NotesModal />
+    <NotesModal />
+    <NotesModal />
+    </Flex>
     </>
   );
 };

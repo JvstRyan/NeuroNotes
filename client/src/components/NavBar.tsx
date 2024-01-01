@@ -1,5 +1,4 @@
-import { Button, Flex, Image, Spacer, Text } from "@chakra-ui/react"
-import { IoPersonSharp } from "react-icons/io5";
+import { Button, Flex, Image } from "@chakra-ui/react";
 
 
 const NavBar = () => {
