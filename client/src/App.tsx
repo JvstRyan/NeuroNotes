@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
-import NotesCard from "./components/notes/NotesCard";
-import NotesModal from "./components/notes/NotesModal";
+import NotesModal from "./components/notes/NotesCardModal";
 
 interface TaskData {
   _id: string;

@@ -25,11 +25,11 @@ const NotesCard = ({onClick}: Props) => {
         onClick={onClick}
       >
         <CardHeader>
-          <Flex justify={"space-between"} align={"center"}>
+          <Flex zIndex={'10'} justify={"space-between"} align={"center"}>
             <Text size={"15px"} fontWeight={"600"} color={"#5C5C5C"}>
               Notes
             </Text>
-            <BsThreeDots size={30} cursor={"pointer"} />
+            <BsThreeDots zInde size={30} cursor={"pointer"} />
           </Flex>
         </CardHeader>
         <CardBody>
