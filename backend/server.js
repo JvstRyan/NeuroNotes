@@ -5,6 +5,7 @@ const connectDB = require('./database/connect')
 const port = process.env.PORT || 5000
 const userRoutes = require('./routes/taskRouter')
 const goalRoutes = require('./routes/goalRouter')
+const folderRoutes =  require('./routes/noteFolderRouter')
 const cors = require('cors');
 
 
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/api/tasks', userRoutes)
 app.use('/api/goals', goalRoutes)
+app.use('./api/folders', folderRoutes)
 
 
 app.get('/', (req, res) => {
