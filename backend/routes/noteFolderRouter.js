@@ -4,7 +4,7 @@ const { getAllFolders,
     findSingleFolder,
     createFolder,
     updateFolder,
-    deleteFolder } = require('../controllers/note-folder')
+    deleteFolder } = require('../controllers/folder')
 
 router.route('/').get(getAllFolders).post(createFolder)
 router.route('/:id').get(findSingleFolder).patch(updateFolder).delete(deleteFolder)

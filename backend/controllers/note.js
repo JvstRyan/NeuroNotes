@@ -2,40 +2,40 @@ const expressAsyncHandler = require("express-async-handler");
 const Folder = require("../models/FolderModal");
 const Note =  require('../models/NotesModal')
 
-
 //CRUD = Create, Read, Update and Delete
-//Get all Folders
 
-const getAllNotes = expressAsyncHandler((req, res) => {
-    res.status(200).send('All folders have been found')
+const allNotes = expressAsyncHandler(async(req,res) => {
+    const note = await Note.find({})
+    res.status(201).json({note})
 })
 
-
-//Find Folder
-
-const findSingleNote = expressAsyncHandler((req, res) => {
-    res.status(200).send('The folder you were looking for has been found')
+const singleNote = expressAsyncHandler(async(req,res) => {
+    res.status(200).send('single note')
 })
 
-//Create Folder
-const createNote = expressAsyncHandler((req, res) => {
-    res.status(200).send('A new folder has been created')
+const createNote = expressAsyncHandler( async (req, res) => {
+    const {title, description, content, folderId} = req.body
+    const folder = await Folder.findById(folderId);
+
+    if(!folder) {
+        res.status(500).json({msg: 'There was no folder found'})
+    }
+
+    const note = new Note({title, description, content, folder: folderId})
+    const createdNote = await note.save()
+    res.status(201).json({createdNote})
 })
 
-//Update Folder
 const updateNote = expressAsyncHandler((req, res) => {
     res.status(200).send('Your folder has been updated')
 })
 
-//Delete Folder
 const deleteNote = expressAsyncHandler((req, res) => {
     res.status(200).send('The folder has been deleted')
 })
 
 module.exports = {
-  getAllNotes,
-  findSingleNote,
-  createNote,
-  updateNote,
-  deleteNote
-}
+   
+    createNote,
+    allNotes
+};
