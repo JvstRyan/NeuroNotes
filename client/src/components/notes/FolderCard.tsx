@@ -11,9 +11,11 @@ import { PiNoteBlankThin } from "react-icons/pi";
 
 interface Props {
     onClick: () => void
+    title: string
+
 }
 
-const NotesCard = ({onClick}: Props) => {
+const NotesCard = ({onClick, title}: Props) => {
 
   return (
     <>
@@ -40,7 +42,7 @@ const NotesCard = ({onClick}: Props) => {
         <CardFooter bg={"#5C5C5C"} mt={"3rem"}>
           <Flex align={"center"} justify={"space-between"}>
             <Text color={"white"} fontWeight={"500"}>
-              Gym Progress
+              {title}
             </Text>
           </Flex>
         </CardFooter>

@@ -5,12 +5,20 @@ const Note =  require('../models/NotesModal')
 //CRUD = Create, Read, Update and Delete
 
 const allNotes = expressAsyncHandler(async(req,res) => {
-    const note = await Note.find({})
+    const {folderId} = req.query
+    const note = await Note.find({folder: folderId})
     res.status(201).json({note})
 })
 
 const singleNote = expressAsyncHandler(async(req,res) => {
-    res.status(200).send('single note')
+    const {id: noteID} = req.params
+    const note = await Note.findOne({_id: noteID})
+
+    if(!note) {
+        res.status(500).json({msg: `Note id has not been found`})
+    }
+    res.status(201).json({note})
+
 })
 
 const createNote = expressAsyncHandler( async (req, res) => {
@@ -26,16 +34,33 @@ const createNote = expressAsyncHandler( async (req, res) => {
     res.status(201).json({createdNote})
 })
 
-const updateNote = expressAsyncHandler((req, res) => {
-    res.status(200).send('Your folder has been updated')
+const updateNote = expressAsyncHandler(async(req, res) => {
+    const {id: noteID} = req.params
+    const note = await Note.findOneAndUpdate({_id: noteID}, req.body, {
+    new:true, runValidators:true
+    })
+
+    if(!note) {
+        res.status(500).json({msg: `Note id has not been found`})
+    }
+    res.status(201).json({note})
 })
 
-const deleteNote = expressAsyncHandler((req, res) => {
-    res.status(200).send('The folder has been deleted')
+const deleteNote = expressAsyncHandler(async(req, res) => {
+   const {id: noteID} = req.params
+   const note = await Note.findOneAndDelete({_id: noteID})
+   
+   if(!note) {
+    res.status(500).json({msg: `Note id has not been found`})
+   }
+   res.status(201).json({note})
 })
 
 module.exports = {
    
     createNote,
-    allNotes
+    allNotes,
+    updateNote,
+    deleteNote,
+    singleNote
 };

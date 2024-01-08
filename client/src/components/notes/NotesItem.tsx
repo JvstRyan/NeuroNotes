@@ -18,8 +18,17 @@ import {
 } from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
 
-const NotesItem = () => {
+interface Props {
+  title: string
+  description: string
+  content: string
+}
+
+
+
+const NotesItem = ({title, description, content}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   return (
     <>
@@ -42,17 +51,14 @@ const NotesItem = () => {
         <CardBody>
           <Flex align={"center"} justify={"start"}>
             <Text size={"md"} pl={"10px"} pr={"10px"} noOfLines={3}>
-              This monday I had my chest day and I was able to hit a new pr on
-              bench. My previous pr is 100kg and this monday I hit 105kg. The
-              rest of the workout went well, I need to start focussing more on
-              triceps.
+             {description}
             </Text>
           </Flex>
         </CardBody>
         <CardFooter bg={"#5C5C5C"} mt={"3rem"}>
           <Flex align={"center"} justify={"space-between"}>
             <Text color={"white"} fontWeight={"600"}>
-              Chest Day Routine
+              {title}
             </Text>
           </Flex>
         </CardFooter>
@@ -70,8 +76,7 @@ const NotesItem = () => {
           </DrawerHeader>
           <Textarea
             defaultValue=
-            {`Collection of notes documenting my progress in the gym, to keep
-            track of my personal records and growth.`}
+            {description}
             ml={"2rem"}
             variant={'unstyled'}
             placeSelf={'start'}
@@ -85,10 +90,7 @@ const NotesItem = () => {
               variant={"unstyled"}
               resize={"none"}
               _focus={{ outline: "none" }}
-              defaultValue={`This monday I had my chest day and I was able to hit a new pr on
-            bench. My previous pr is 100kg and this monday I hit 105kg. The
-            rest of the workout went well, I need to start focussing more on
-            triceps.`}
+              defaultValue={content}
             ></Textarea>
           </DrawerBody>
         </DrawerContent>

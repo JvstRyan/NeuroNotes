@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
-import NotesModal from "./components/notes/NotesCardModal";
+import NotesModal from "./components/notes/NotesFolderModal";
+import AddFolder from "./components/notes/addFolder";
 
 interface TaskData {
   _id: string;
@@ -18,9 +19,16 @@ interface GoalData {
   goal: string
 }
 
+interface FolderData {
+  _id: string
+  name: string
+  description: string
+}
+
 const App = () => {
   const [tasks, setTasks] = useState<TaskData[]>([]);
   const [goals, setGoals] = useState<GoalData[]>([])
+  const [folders, setFolders] = useState<FolderData[]>([])
 
   useEffect(() => {
     const fetchTasks = async () =>  {
@@ -46,6 +54,18 @@ const App = () => {
     }
     fetchGoals()
   }, [goals]);
+
+  useEffect(() => {
+    const fetchFolders = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/folders")
+        setFolders(response.data.folders)
+      } catch(error) {
+        console.error('failed to fetch folders', error)
+      }
+    }
+    fetchFolders()
+  }, [folders])
 
   return (
     <>
@@ -81,14 +101,14 @@ const App = () => {
       align={'center'}
       gap={'1.5rem'}
       flexWrap={'wrap'}
+      mb={'5rem'}
     >
-    <NotesModal />
-    <NotesModal />
-    <NotesModal />
-    <NotesModal />
-    <NotesModal />
-    <NotesModal />
+      {folders.map((item) => (
+        <NotesModal key={item._id} name={item.name} folderId={item._id} description={item.description} />
+      ))}
+      <AddFolder />
     </Flex>
+
     </>
   );
 };
