@@ -46,7 +46,10 @@ function EditModal({task, _id}: Props) {
               <Input 
               value={updatedTask}
               onChange={(e) => setUpdatedTask(e.target.value)}
-              placeholder={task} />
+              placeholder={task} 
+              focusBorderColor="black"
+              />
+              
             </FormControl>
             </ModalBody>
             <ModalFooter>

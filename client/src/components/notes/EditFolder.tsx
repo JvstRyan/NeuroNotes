@@ -32,17 +32,20 @@ function EditFolder({ title, description, _id }: Props) {
 
   const updateFolder = async (id: string) => {
     try {
-        await axios.post(`http://localhost:5000/api/folders${id}`, {name: updatedFolderName, description: updatedFolderDesc})
-        setUpdatedFolderName('')
-        setUpdatedFolderDesc('')
-    } catch(error) {
-        console.error('Updating folder went wrong', error)
-    }
-  }
+      if (updatedFolderName !== "" || updatedFolderDesc !== "") {
+        const body = {
+          name: updatedFolderName || title,
+          description: updatedFolderDesc || description,
+        };
 
-  const handleOpen = (id: string) => {
-    updateFolder(id)
-    onClose();
+        await axios.patch(`http://localhost:5000/api/folders/${id}`, body);
+        setUpdatedFolderName("");
+        setUpdatedFolderDesc("");
+        onClose()
+      }
+    } catch (error) {
+      console.error("Updating folder went wrong", error);
+    }
   };
 
   return (
@@ -67,6 +70,7 @@ function EditFolder({ title, description, _id }: Props) {
                 value={updatedFolderName}
                 onChange={(e) => setUpdatedFolderName(e.target.value)}
                 placeholder={title}
+                focusBorderColor="black"
               />
               <Flex mt={"10px"} direction={"column"}>
                 <FormLabel>Description</FormLabel>
@@ -75,6 +79,7 @@ function EditFolder({ title, description, _id }: Props) {
                   placeholder={description}
                   value={updatedFolderDesc}
                   onChange={(e) => setUpdatedFolderDesc(e.target.value)}
+                  focusBorderColor="black"
                 ></Textarea>
               </Flex>
             </FormControl>
@@ -86,7 +91,7 @@ function EditFolder({ title, description, _id }: Props) {
             <Button
               bg={"#5C5C5C"}
               _hover={{ bg: "#313131" }}
-              onClick={() => handleOpen(_id)}
+              onClick={() => updateFolder(_id)}
               colorScheme="blue"
             >
               Update

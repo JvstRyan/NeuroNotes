@@ -46,7 +46,9 @@ function EditModal({goal, _id}: Props) {
               <Input 
               value={updatedGoal}
               onChange={(e) => setUpdatedGoal(e.target.value)}
-              placeholder={goal} />
+              placeholder={goal} 
+              focusBorderColor="black"
+              />
             </FormControl>
             </ModalBody>
             <ModalFooter>
