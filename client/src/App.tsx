@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
 import NotesModal from "./components/notes/NotesFolderModal";
-import AddFolder from "./components/notes/addFolder";
+import AddFolder from "./components/notes/AddFolder";
 
 interface TaskData {
   _id: string;

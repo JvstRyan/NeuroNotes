@@ -36,20 +36,19 @@ const NotesModal = ({name, description, folderId}: Props) => {
   const [notes, setNotes] = useState<Notes[]>()
 
   useEffect( ()  =>  {
-    let isMounted = true;
     const fetchNotes = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/notes?folderId=${folderId}`)
-        if (isMounted) setNotes(response.data.notes)
+        console.log(folderId)
+        console.log(response.data.note)
+        setNotes(response.data.note)
       } catch(error) {
         console.error(error);
       }
     }
     fetchNotes()
-    return () => {
-      isMounted = false;
-    }
-  },[folderId])
+  },[notes])
+
 
   return (
     <>

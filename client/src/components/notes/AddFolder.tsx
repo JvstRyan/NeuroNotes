@@ -1,6 +1,5 @@
 import {
     Card,
-    CardBody
 } from "@chakra-ui/react";
 
 
@@ -14,10 +13,10 @@ const AddFolder = () => {
       <Card
         _hover={{ backgroundColor: "#F0F0F0" }}
         cursor={"pointer"}
-        minW={"sm"}
-        h={'20rem'}
+        w={"sm"}
+        h={'xs'}
+        mb={"1rem"}
         borderRadius={"10px"}
-        borderColor={'#5C5C5C'}
         placeContent={'center'}
         alignItems={'center'}
         variant={'elevated'}

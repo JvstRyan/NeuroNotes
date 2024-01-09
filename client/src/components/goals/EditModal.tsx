@@ -42,7 +42,7 @@ function EditModal({goal, _id}: Props) {
             <ModalCloseButton />
             <ModalBody>
             <FormControl>
-              <FormLabel>Task Name:</FormLabel>
+              <FormLabel>Goal Name:</FormLabel>
               <Input 
               value={updatedGoal}
               onChange={(e) => setUpdatedGoal(e.target.value)}
@@ -53,7 +53,7 @@ function EditModal({goal, _id}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={() => handleOpen(_id)} colorScheme='blue'>Update</Button>
+              <Button bg={'#5C5C5C'} _hover={{bg: '#313131'}} onClick={() => handleOpen(_id)} colorScheme='blue'>Update</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
