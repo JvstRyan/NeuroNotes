@@ -11,16 +11,20 @@ import {
 } from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
 import { PiNoteBlankThin } from "react-icons/pi";
-import { AiFillEdit } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
+import EditFolder from "./EditFolder";
 
 interface Props {
   onClick: () => void;
   title: string;
+  description: string
+  id: string
 }
 
-const NotesCard = ({ onClick, title }: Props) => {
+
+
+const NotesCard = ({ onClick, title, description, id }: Props) => {
   const [showIcons, setShowIcons] = useState(false);
 
   return (
@@ -50,12 +54,7 @@ const NotesCard = ({ onClick, title }: Props) => {
               >
                 <Collapse in={showIcons} animateOpacity>
                   <Flex direction={"column"} gap={"8px"}>
-                    <Icon as={AiFillEdit}
-                      color={"#5C5C5C"}
-                      cursor={"pointer"}
-                      _hover={{color: "#313131" }}
-                      boxSize={6}
-                    />
+                    <EditFolder title={title} description={description} id={id} />
                     <Icon as={FaTrash}
                       cursor={"pointer"}
                       color={"#5C5C5C"}

@@ -51,7 +51,7 @@ const NotesItem = ({title, description, content}: Props) => {
         <CardBody>
           <Flex align={"center"} justify={"start"}>
             <Text size={"md"} pl={"10px"} pr={"10px"} noOfLines={3}>
-             {description}
+             {content}
             </Text>
           </Flex>
         </CardBody>

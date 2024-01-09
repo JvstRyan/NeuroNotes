@@ -14,6 +14,7 @@ import NotesCard from "./FolderCard";
 import NotesItem from "./NotesItem";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import FolderCard from "./FolderCard";
 
 interface Props {
   name: string
@@ -52,7 +53,7 @@ const NotesModal = ({name, description, folderId}: Props) => {
 
   return (
     <>
-      <NotesCard title={name} onClick={onOpen} />
+      <FolderCard title={name} onClick={onOpen} description={description} id={folderId} />
       
       <Modal
         blockScrollOnMount={false}

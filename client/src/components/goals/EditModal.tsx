@@ -38,7 +38,7 @@ function EditModal({goal, _id}: Props) {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Edit Modal</ModalHeader>
+            <ModalHeader>Edit Goal</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
             <FormControl>
