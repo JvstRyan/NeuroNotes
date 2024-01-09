@@ -54,7 +54,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
               >
                 <Collapse in={showIcons} animateOpacity>
                   <Flex direction={"column"} gap={"8px"}>
-                    <EditFolder title={title} description={description} id={id} />
+                    <EditFolder title={title} description={description} _id={id} />
                     <Icon as={FaTrash}
                       cursor={"pointer"}
                       color={"#5C5C5C"}

@@ -15,21 +15,33 @@ import {
   Textarea,
   Flex,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 
 interface Props {
   title: string;
   description: string;
-  id: string;
+  _id: string;
 }
 
-function EditFolder({ title, description, id }: Props) {
+function EditFolder({ title, description, _id }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [updatedFolderName, setUpdatedFolderName] = useState("");
   const [updatedFolderDesc, setUpdatedFolderDesc] = useState("");
 
-  const handleOpen = () => {
+  const updateFolder = async (id: string) => {
+    try {
+        await axios.post(`http://localhost:5000/api/folders${id}`, {name: updatedFolderName, description: updatedFolderDesc})
+        setUpdatedFolderName('')
+        setUpdatedFolderDesc('')
+    } catch(error) {
+        console.error('Updating folder went wrong', error)
+    }
+  }
+
+  const handleOpen = (id: string) => {
+    updateFolder(id)
     onClose();
   };
 
@@ -74,7 +86,7 @@ function EditFolder({ title, description, id }: Props) {
             <Button
               bg={"#5C5C5C"}
               _hover={{ bg: "#313131" }}
-              onClick={() => handleOpen()}
+              onClick={() => handleOpen(_id)}
               colorScheme="blue"
             >
               Update
