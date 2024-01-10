@@ -6,13 +6,12 @@ import {
   CardHeader,
   Collapse,
   Flex,
-  Icon,
-  Text,
+  Text
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { PiNoteBlankThin } from "react-icons/pi";
-import { FaTrash } from "react-icons/fa";
-import { useState } from "react";
+import DeleteFolder from "./DeleteFolder";
 import EditFolder from "./EditFolder";
 
 interface Props {
@@ -33,7 +32,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
         <CardHeader>
           <Flex zIndex={"10"} justify={"space-between"} align={"center"}>
             <Text size={"15px"} fontWeight={"600"} color={"#5C5C5C"}>
-              Notes
+              Folder
             </Text>
             <Flex
               gap={"5px"}
@@ -55,12 +54,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
                 <Collapse in={showIcons} animateOpacity>
                   <Flex direction={"column"} gap={"8px"}>
                     <EditFolder title={title} description={description} _id={id} />
-                    <Icon as={FaTrash}
-                      cursor={"pointer"}
-                      color={"#5C5C5C"}
-                      boxSize={6}
-                      _hover={{ color: "#313131" }}
-                    />
+                    <DeleteFolder id={id} title={title} />
                   </Flex>
                 </Collapse>
               </Box>
@@ -69,7 +63,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
         </CardHeader>
         <CardBody>
           <Flex align={"center"} justify={"center"}>
-            <PiNoteBlankThin color={"#5C5C5C"} size={100} />
+            <PiNoteBlankThin onClick={onClick} cursor={'pointer'} color={"#5C5C5C"} size={100} />
           </Flex>
         </CardBody>
         <CardFooter
