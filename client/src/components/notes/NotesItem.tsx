@@ -19,6 +19,7 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa6";
@@ -27,16 +28,26 @@ interface Props {
   title: string;
   description: string;
   content: string;
-  id: string
+  _id: string
 }
 
-const NotesItem = ({ title, description, content, id }: Props) => {
+const NotesItem = ({ title, description, content, _id }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showIcons, setShowIcons] = useState(false);
 
-  const [noteTitle, setNoteTitle] = useState('')
-  const [noteDescription, setNoteDescription] = useState('')
-  const [noteContent, setNoteContent] = useState('')
+  const [noteTitle, setNoteTitle] = useState(title)
+  const [noteDescription, setNoteDescription] = useState(description)
+  const [noteContent, setNoteContent] = useState(content)
+
+  const updateNotes = async (_id: string) => {
+    try {
+      if (noteTitle !== title || noteDescription !== description || noteContent !== content) {
+      await axios.patch(`http://localhost:5000/api/notes/${_id}`, {title: noteTitle, description: noteDescription, content: noteContent})
+      }
+    } catch(error) {
+      console.error('Note was not succesfully updated', error)
+    }
+  }
 
   return (
     <>
@@ -99,15 +110,16 @@ const NotesItem = ({ title, description, content, id }: Props) => {
           </Flex>
         </CardFooter>
       </Card>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
+      <Drawer isOpen={isOpen} placement="right" onClose={() => {updateNotes(_id); onClose()}} size="md">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton zIndex={"10"} />
+          <DrawerCloseButton  zIndex={"10"} />
           <DrawerHeader>
             <Input
               fontSize={"2rem"}
               defaultValue={title}
               variant={"unstyled"}
+              onChange={(e) => setNoteTitle(e.target.value)}
             />
           </DrawerHeader>
           <Textarea
@@ -115,6 +127,7 @@ const NotesItem = ({ title, description, content, id }: Props) => {
             ml={"2rem"}
             variant={"unstyled"}
             placeSelf={"start"}
+            onChange={(e) => setNoteDescription(e.target.value)}
           ></Textarea>
           <Divider />
           <DrawerBody>
@@ -126,6 +139,7 @@ const NotesItem = ({ title, description, content, id }: Props) => {
               resize={"none"}
               _focus={{ outline: "none" }}
               defaultValue={content}
+              onChange={(e) => setNoteContent(e.target.value)}
             ></Textarea>
           </DrawerBody>
         </DrawerContent>

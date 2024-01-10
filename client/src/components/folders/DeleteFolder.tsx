@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FaTrash } from "react-icons/fa6";
-import { GoPlus } from "react-icons/go";
 
 interface Props {
   id: string;

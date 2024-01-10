@@ -8,11 +8,11 @@ import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
 import NotesModal from "./components/notes/NotesFolderModal";
 import AddFolder from "./components/folders/AddFolder";
+import {  useFetchTasks } from "./api/requests";
 
-interface TaskData {
-  _id: string;
-  name: string;
-}
+
+
+
 
 interface GoalData {
   _id: string;
@@ -26,22 +26,12 @@ interface FolderData {
 }
 
 const App = () => {
-  const [tasks, setTasks] = useState<TaskData[]>([]);
   const [goals, setGoals] = useState<GoalData[]>([]);
   const [folders, setFolders] = useState<FolderData[]>([]);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/tasks");
-        setTasks(response.data.tasks);
-      } catch (error) {
-        console.error("Failed to fetch tasks", error);
-      }
-    };
-
-    fetchTasks();
-  }, [tasks]);
+  const { data: tasks} = useFetchTasks();
+  
+ 
 
   useEffect(() => {
     const fetchGoals = async () => {
@@ -53,7 +43,7 @@ const App = () => {
       }
     };
     fetchGoals();
-  }, [goals]);
+  }, []);
 
   useEffect(() => {
     const fetchFolders = async () => {
@@ -65,7 +55,7 @@ const App = () => {
       }
     };
     fetchFolders();
-  }, [folders]);
+  }, []);
 
   return (
     <>
@@ -85,7 +75,7 @@ const App = () => {
         >
           <Flex direction="column" alignItems="center">
             <TaskForm />
-            {tasks.map((item) => (
+            {tasks?.map((item) => (
               <TaskItem key={item._id} task={item.name} _id={item._id} />
             ))}
           </Flex>

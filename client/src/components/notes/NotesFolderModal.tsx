@@ -23,7 +23,7 @@ interface Props {
 }
 
 interface Notes {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   content: string;
@@ -40,15 +40,13 @@ const NotesModal = ({ name, description, folderId }: Props) => {
         const response = await axios.get(
           `http://localhost:5000/api/notes?folderId=${folderId}`
         );
-        console.log(folderId);
-        console.log(response.data.note);
         setNotes(response.data.note);
       } catch (error) {
         console.error(error);
       }
     };
     fetchNotes();
-  }, [notes]);
+  }, []);
 
   return (
     <>
@@ -77,11 +75,11 @@ const NotesModal = ({ name, description, folderId }: Props) => {
             <SimpleGrid mt="2rem" columns={4} spacing={5}>
               {notes?.map((item) => (
                 <NotesItem
-                  key={item.id}
+                  key={item._id}
                   title={item.title}
                   description={item.description}
                   content={item.content}
-                  id={item.id}
+                  _id={item._id}
                 />
               ))}
             </SimpleGrid>
