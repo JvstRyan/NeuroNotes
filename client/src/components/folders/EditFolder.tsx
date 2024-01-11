@@ -15,9 +15,10 @@ import {
   Textarea,
   Flex,
 } from "@chakra-ui/react";
-import axios from "axios";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
+import { patchFolder } from "../../api/folder-requests";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
   title: string;
@@ -25,28 +26,28 @@ interface Props {
   _id: string;
 }
 
-function EditFolder({ title, description, _id }: Props) {
+function EditFolder({ title, description: propDesc, _id }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [updatedFolderName, setUpdatedFolderName] = useState("");
   const [updatedFolderDesc, setUpdatedFolderDesc] = useState("");
 
-  const updateFolder = async (id: string) => {
-    try {
-      if (updatedFolderName !== "" || updatedFolderDesc !== "") {
-        const body = {
-          name: updatedFolderName || title,
-          description: updatedFolderDesc || description,
-        };
+  const queryClient = useQueryClient()
 
-        await axios.patch(`http://localhost:5000/api/folders/${id}`, body);
-        setUpdatedFolderName("");
-        setUpdatedFolderDesc("");
-        onClose()
-      }
-    } catch (error) {
-      console.error("Updating folder went wrong", error);
+  const mutation = useMutation({
+    mutationFn: patchFolder,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['folders']})
     }
-  };
+  })
+
+  const updateFolder = (_id: string) => {
+    const name = updatedFolderName !== "" ? updatedFolderName : title;
+    const description = updatedFolderDesc !== "" ? updatedFolderDesc : propDesc;
+    mutation.mutate({id: _id, body: {name, description}})
+    setUpdatedFolderName('')
+    setUpdatedFolderDesc('')
+    onClose()
+  }
 
   return (
     <>
@@ -76,7 +77,7 @@ function EditFolder({ title, description, _id }: Props) {
                 <FormLabel>Description</FormLabel>
                 <Textarea
                   h={"12rem"}
-                  placeholder={description}
+                  placeholder={propDesc}
                   value={updatedFolderDesc}
                   onChange={(e) => setUpdatedFolderDesc(e.target.value)}
                   focusBorderColor="black"

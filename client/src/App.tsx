@@ -1,8 +1,6 @@
 import { Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
 import TaskForm from "./components/tasks/TaskForm";
 import TaskItem from "./components/tasks/TaskItem";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
@@ -10,33 +8,15 @@ import NotesModal from "./components/notes/NotesFolderModal";
 import AddFolder from "./components/folders/AddFolder";
 import { useFetchTasks } from "./api/task-requests";
 import { useFetchGoals } from "./api/goal-requests";
+import { useFetchFolders } from "./api/folder-requests";
 
 
-interface FolderData {
-  _id: string;
-  name: string;
-  description: string;
-}
 
 const App = () => {
-  const [folders, setFolders] = useState<FolderData[]>([]);
-
   const {data: tasks} = useFetchTasks();
   const {data: goals} = useFetchGoals()
+  const {data: folders} = useFetchFolders()
 
-  
-
-  useEffect(() => {
-    const fetchFolders = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/folders");
-        setFolders(response.data.folders);
-      } catch (error) {
-        console.error("failed to fetch folders", error);
-      }
-    };
-    fetchFolders();
-  }, []);
 
   return (
     <>
@@ -85,7 +65,7 @@ const App = () => {
         flexWrap={"wrap"}
         mb={"5rem"}
       >
-        {folders.map((item) => (
+        {folders?.map((item) => (
           <NotesModal
             key={item._id}
             name={item.name}

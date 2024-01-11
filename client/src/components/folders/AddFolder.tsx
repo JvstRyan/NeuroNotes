@@ -1,22 +1,27 @@
 import { Button, Card, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
+import { createFolder} from "../../api/folder-requests";
 
 const AddFolder = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [newFolderName, setNewFolderName] = useState('')
   const [newFolderDesc, setNewFolderDesc] = useState('')
 
-  const createFolder = async () => {
-    try {
-      await axios.post(`http://localhost:5000/api/folders/`, {name: newFolderName, desciption: newFolderDesc})
-      setNewFolderName('')
-      setNewFolderDesc('')
-      onClose()
-    } catch(error) {
-      console.error('Folder could not be created', error)
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: createFolder,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['folders']})
     }
+  })
+
+  const newFolder = () => {
+    mutation.mutate({name: newFolderName, description: newFolderDesc})
+    onClose()
   }
 
   return (
@@ -64,7 +69,7 @@ const AddFolder = () => {
             <Button
               bg={"#5C5C5C"}
               _hover={{ bg: "#313131" }}
-              onClick={createFolder}
+              onClick={newFolder}
               colorScheme="blue"
             >
               Create
