@@ -45,3 +45,10 @@ export const patchFolder = async ({id, body}: {id: string, body: {name: string, 
 }
 
 // Delete folder
+export const deleteFolder = async (id: string) => {
+      try {
+        await axios.delete(`http://localhost:5000/api/folders/${id}`);
+      } catch(error) {
+          console.error('Folder could not be deleted', error)
+      }
+};

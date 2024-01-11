@@ -11,8 +11,9 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaTrash } from "react-icons/fa6";
+import { deleteFolder } from "../../api/folder-requests";
 
 interface Props {
   id: string;
@@ -22,13 +23,18 @@ interface Props {
 const DeleteFolder = ({ id, title }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const deleteFolder = async (id: string) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/folders/${id}`);
-    } catch(error) {
-        console.error('Folder could not be deleted', error)
-    }
-  };
+ const queryClient = useQueryClient()
+
+ const mutation = useMutation({
+  mutationFn: deleteFolder,
+  onSuccess: () => {
+    queryClient.invalidateQueries({queryKey: ['folders']})
+  }
+ })
+
+ const removeFolder = (id: string) => {
+  mutation.mutate(id)
+ }
 
   return (
     <>
@@ -58,7 +64,7 @@ const DeleteFolder = ({ id, title }: Props) => {
               bg={"#5C5C5C"}
               _hover={{ bg: "#313131" }}
               colorScheme="blue"
-              onClick={() => deleteFolder(id)}
+              onClick={() => removeFolder(id)}
             >
               Delete
             </Button>
@@ -70,3 +76,4 @@ const DeleteFolder = ({ id, title }: Props) => {
 };
 
 export default DeleteFolder;
+
