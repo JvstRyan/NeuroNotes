@@ -26,3 +26,10 @@ export const fetchNotes = async (id: string) => {
     }
   }
 // Delete notes
+export const deleteNotes = async (id: string) => {
+    try {
+        await axios.delete(`http://localhost:5000/api/notes/${id}`)
+    } catch(error) {
+        console.error('Removing of note has failed', error)
+    }
+}

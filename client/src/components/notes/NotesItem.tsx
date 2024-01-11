@@ -24,6 +24,7 @@ import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa6";
 import { patchNotes } from "../../api/note-requests";
+import DeleteNotes from "./DeleteNotes";
 
 interface Props {
   title: string;
@@ -84,13 +85,7 @@ const NotesItem = ({ title: propTitle, description: propDescription, content: pr
               >
                 <Collapse in={showIcons} animateOpacity>
                   <Flex direction={"column"} gap={"8px"}>
-                    <Icon
-                      as={FaTrash}
-                      cursor={"pointer"}
-                      color={"#5C5C5C"}
-                      boxSize={6}
-                      _hover={{ color: "#313131" }}
-                    />
+                    <DeleteNotes title={propTitle} id={_id} />
                   </Flex>
                 </Collapse>
               </Box>

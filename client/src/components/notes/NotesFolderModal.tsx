@@ -33,7 +33,7 @@ const NotesModal = ({ name, description, folderId }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
 
-  const { data: notes } = useQuery<Notes[]>({
+ const { data: notes } = useQuery<Notes[]>({
     queryKey: ["notes", folderId],
     queryFn: () => fetchNotes(folderId),
   });
