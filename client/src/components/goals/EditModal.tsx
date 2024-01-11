@@ -1,6 +1,5 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input} from "@chakra-ui/react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
 import { useState } from "react"
 import { CiEdit } from "react-icons/ci"
 import { patchGoal } from "../../api/goal-requests"

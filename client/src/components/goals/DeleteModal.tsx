@@ -1,6 +1,7 @@
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react"
-import axios from "axios"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { RxCross2 } from "react-icons/rx"
+import { deleteGoal } from "../../api/goal-requests"
 
 interface Props {
     _id: string
@@ -10,19 +11,20 @@ interface Props {
 function DeleteModal({ _id, goal}: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const deleteGoal = async (_id: string) => {
-        try {
-        await axios.delete(`http://localhost:5000/api/goals/${_id}`)
-        } catch(error) {
-            console.error(`${error}`)
-        }
-    }
-   
-    const handleDelete = (id: string) => {
-        deleteGoal(id)
-        onClose()
-    }
+    const queryClient = useQueryClient()
 
+    const mutation = useMutation({
+      mutationFn: deleteGoal,
+      onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ['goals']})
+      }
+    })
+
+    const removeGoal = (_id: string) => {
+      mutation.mutate(_id)
+      onClose()
+    }
+    
     return (
       <>
         <RxCross2 onClick={onOpen} cursor={'pointer'} size={'26px'}/>
@@ -43,7 +45,7 @@ function DeleteModal({ _id, goal}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={() => handleDelete(_id)} colorScheme='red'>Delete</Button>
+              <Button onClick={() => removeGoal(_id)} colorScheme='red'>Delete</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
