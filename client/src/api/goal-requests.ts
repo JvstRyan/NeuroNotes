@@ -31,8 +31,17 @@ export const postGoals = async (newGoal: {goal: string}) => {
     }
   }
 
-
-
 //Update goal
+export const patchGoal = async ({id, body}: {id: string, body: {goal: string}}) => {
+    try {
+    const response = await axios.patch(`http://localhost:5000/api/goals/${id}`, body)
+     return response.data.goal
+    } catch(error) {
+    console.error(error)
+    }
+}
+
+
+
 //Delete goal
 

@@ -1,7 +1,9 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input} from "@chakra-ui/react"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useState } from "react"
 import { CiEdit } from "react-icons/ci"
+import { patchGoal } from "../../api/goal-requests"
 
 interface Props {
     goal: string
@@ -13,19 +15,21 @@ function EditModal({goal, _id}: Props) {
     const [updatedGoal, setUpdatedGoal] = useState('')
 
 
-    const updateGoal = async (id: string) => {
-        try {
-         await axios.patch(`http://localhost:5000/api/goals/${id}`, {goal: updatedGoal} )
-         setUpdatedGoal('')
-        } catch(error) {
-        console.error(error)
-        }
+    const queryClient = useQueryClient()
+
+    const mutation = useMutation({
+      mutationFn: patchGoal,
+      onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ['goals']})
+      }
+    })
+
+    const updateGoal = (_id: string) => {
+      mutation.mutate({id: _id, body: {goal: updatedGoal}})
+      setUpdatedGoal('')
+      onClose()
     }
 
-    const handleOpen = (id: string) => {
-        updateGoal(id)
-        onClose()
-    }
 
     return (
       <>
@@ -55,7 +59,7 @@ function EditModal({goal, _id}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button bg={'#5C5C5C'} _hover={{bg: '#313131'}} onClick={() => handleOpen(_id)} colorScheme='blue'>Update</Button>
+              <Button bg={'#5C5C5C'} _hover={{bg: '#313131'}} onClick={() => updateGoal(_id)} colorScheme='blue'>Update</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

@@ -1,6 +1,5 @@
 import { Button, FormControl, Input, Spacer } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { postGoals } from "../../api/goal-requests";
