@@ -42,3 +42,14 @@ export const deleteTask = async (id: string) => {
     throw error;
   }
 };
+
+
+//Update task 
+export const patchTask = async ({ id, body }: { id: string, body: {name: string} }) => {
+  try {
+   const response = await axios.patch(`http://localhost:5000/api/tasks/${id}`, body )
+   return response.data.tasks
+  } catch(error) {
+  console.error(error)
+  }
+}
