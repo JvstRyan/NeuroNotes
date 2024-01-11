@@ -30,33 +30,39 @@ interface Props {
   title: string;
   description: string;
   content: string;
-  _id: string
+  _id: string;
 }
 
-const NotesItem = ({ title: propTitle, description: propDescription, content: propContent, _id }: Props) => {
+const NotesItem = ({
+  title: propTitle,
+  description: propDescription,
+  content: propContent,
+  _id,
+}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showIcons, setShowIcons] = useState(false);
 
-  const [noteTitle, setNoteTitle] = useState(propTitle)
-  const [noteDescription, setNoteDescription] = useState(propDescription)
-  const [noteContent, setNoteContent] = useState(propContent)
+  const [noteTitle, setNoteTitle] = useState(propTitle);
+  const [noteDescription, setNoteDescription] = useState(propDescription);
+  const [noteContent, setNoteContent] = useState(propContent);
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: patchNotes,
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['notes']})
-    }
-  })
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+    },
+  });
 
   const updateNotes = (_id: string) => {
-    const title = noteTitle !== '' ? noteTitle : propTitle
-    const description = noteDescription !== '' ? noteDescription : propDescription
-    const content = noteContent !== '' ? noteContent : propContent
-    mutation.mutate({id: _id, body: {title, description, content}})
-    onClose()
-  }
+    const title = noteTitle !== "" ? noteTitle : propTitle;
+    const description =
+      noteDescription !== "" ? noteDescription : propDescription;
+    const content = noteContent !== "" ? noteContent : propContent;
+    mutation.mutate({ id: _id, body: { title, description, content } });
+    onClose();
+  };
 
   return (
     <>
@@ -94,7 +100,13 @@ const NotesItem = ({ title: propTitle, description: propDescription, content: pr
         </CardHeader>
         <CardBody>
           <Flex align={"center"} justify={"start"}>
-            <Text onClick={onOpen} cursor={'pointer'} size={"md"} pr={'25px'} noOfLines={3}>
+            <Text
+              onClick={onOpen}
+              cursor={"pointer"}
+              size={"md"}
+              pr={"25px"}
+              noOfLines={3}
+            >
               {propContent}
             </Text>
           </Flex>
@@ -113,16 +125,22 @@ const NotesItem = ({ title: propTitle, description: propDescription, content: pr
           </Flex>
         </CardFooter>
       </Card>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => updateNotes(_id)} size="md">
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={() => updateNotes(_id)}
+        size="md"
+      >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton  zIndex={"10"} />
+          <DrawerCloseButton zIndex={"10"} />
           <DrawerHeader>
             <Input
               fontSize={"2rem"}
               defaultValue={propTitle}
               variant={"unstyled"}
               onChange={(e) => setNoteTitle(e.target.value)}
+              spellCheck={false}
             />
           </DrawerHeader>
           <Textarea
@@ -131,6 +149,7 @@ const NotesItem = ({ title: propTitle, description: propDescription, content: pr
             variant={"unstyled"}
             placeSelf={"start"}
             onChange={(e) => setNoteDescription(e.target.value)}
+            spellCheck={false}
           ></Textarea>
           <Divider />
           <DrawerBody>
@@ -143,6 +162,7 @@ const NotesItem = ({ title: propTitle, description: propDescription, content: pr
               _focus={{ outline: "none" }}
               defaultValue={propContent}
               onChange={(e) => setNoteContent(e.target.value)}
+              spellCheck={false}
             ></Textarea>
           </DrawerBody>
         </DrawerContent>

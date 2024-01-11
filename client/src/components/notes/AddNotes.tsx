@@ -59,6 +59,7 @@ const AddNotes = ({foldId}: Props) => {
               <Input
                 focusBorderColor="black"
                 onChange={(e) => setNoteTitle(e.target.value)}
+                spellCheck={false}
               />
                <Flex mt={"10px"} direction={"column"}>
                 <FormLabel>Description:</FormLabel>
@@ -66,6 +67,7 @@ const AddNotes = ({foldId}: Props) => {
                   h={"5rem"}
                   focusBorderColor="black"
                  onChange={(e) => setNoteDescription(e.target.value)}
+                 spellCheck={false}
                 ></Textarea>
               </Flex>
               <Flex mt={"10px"} direction={"column"}>
@@ -74,6 +76,7 @@ const AddNotes = ({foldId}: Props) => {
                   h={"12rem"}
                   focusBorderColor="black"
                  onChange={(e) => setNoteContent(e.target.value)}
+                 spellCheck={false}
                 ></Textarea>
               </Flex>
             </FormControl>
