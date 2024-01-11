@@ -11,11 +11,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import NotesItem from "./NotesItem";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import FolderCard from "../folders/FolderCard";
-import { useFetchNotes } from "../../api/note-requests";
 import { useQuery } from "@tanstack/react-query";
+import { fetchNotes } from "../../api/note-requests";
 
 interface Props {
   name: string;
@@ -34,16 +32,6 @@ interface Notes {
 const NotesModal = ({ name, description, folderId }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const fetchNotes = async (id: string) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/notes?folderId=${id}`
-      );
-      return response.data.note;
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const { data: notes } = useQuery<Notes[]>({
     queryKey: ["notes", folderId],

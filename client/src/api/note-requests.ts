@@ -1,16 +1,28 @@
 
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
  
     
-    
+// Get all Notes
+export const fetchNotes = async (id: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/notes?folderId=${id}`
+      );
+      return response.data.note;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+// Create notes
 
-  export const useFetchNotes = () =>
-    useQuery<Notes[]>({
-     queryKey: ['notes'],
-     queryFn: fetchNotes
-    })
-
-
+// Update notes
+ export const patchNotes = async ({id, body}: {id: string, body: {title: string, description: string, content: string}}) => {
+    try {
+     await axios.patch(`http://localhost:5000/api/notes/${id}`, body)
+    } catch(error) {
+      console.error('Note was not succesfully updated', error)
+    }
+  }
+// Delete notes

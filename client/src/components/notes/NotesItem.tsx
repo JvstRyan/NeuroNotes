@@ -19,10 +19,11 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa6";
+import { patchNotes } from "../../api/note-requests";
 
 interface Props {
   title: string;
@@ -31,22 +32,29 @@ interface Props {
   _id: string
 }
 
-const NotesItem = ({ title, description, content, _id }: Props) => {
+const NotesItem = ({ title: propTitle, description: propDescription, content: propContent, _id }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showIcons, setShowIcons] = useState(false);
 
-  const [noteTitle, setNoteTitle] = useState(title)
-  const [noteDescription, setNoteDescription] = useState(description)
-  const [noteContent, setNoteContent] = useState(content)
+  const [noteTitle, setNoteTitle] = useState(propTitle)
+  const [noteDescription, setNoteDescription] = useState(propDescription)
+  const [noteContent, setNoteContent] = useState(propContent)
 
-  const updateNotes = async (_id: string) => {
-    try {
-      if (noteTitle !== title || noteDescription !== description || noteContent !== content) {
-      await axios.patch(`http://localhost:5000/api/notes/${_id}`, {title: noteTitle, description: noteDescription, content: noteContent})
-      }
-    } catch(error) {
-      console.error('Note was not succesfully updated', error)
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: patchNotes,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['notes']})
     }
+  })
+
+  const updateNotes = (_id: string) => {
+    const title = noteTitle !== '' ? noteTitle : propTitle
+    const description = noteDescription !== '' ? noteDescription : propDescription
+    const content = noteContent !== '' ? noteContent : propContent
+    mutation.mutate({id: _id, body: {title, description, content}})
+    onClose()
   }
 
   return (
@@ -92,7 +100,7 @@ const NotesItem = ({ title, description, content, _id }: Props) => {
         <CardBody>
           <Flex align={"center"} justify={"start"}>
             <Text onClick={onOpen} cursor={'pointer'} size={"md"} pr={'25px'} noOfLines={3}>
-              {content}
+              {propContent}
             </Text>
           </Flex>
         </CardBody>
@@ -105,25 +113,25 @@ const NotesItem = ({ title, description, content, _id }: Props) => {
         >
           <Flex align={"center"} justify={"space-between"}>
             <Text color={"white"} fontWeight={"600"}>
-              {title}
+              {propTitle}
             </Text>
           </Flex>
         </CardFooter>
       </Card>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => {updateNotes(_id); onClose()}} size="md">
+      <Drawer isOpen={isOpen} placement="right" onClose={() => updateNotes(_id)} size="md">
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton  zIndex={"10"} />
           <DrawerHeader>
             <Input
               fontSize={"2rem"}
-              defaultValue={title}
+              defaultValue={propTitle}
               variant={"unstyled"}
               onChange={(e) => setNoteTitle(e.target.value)}
             />
           </DrawerHeader>
           <Textarea
-            defaultValue={description}
+            defaultValue={propDescription}
             ml={"2rem"}
             variant={"unstyled"}
             placeSelf={"start"}
@@ -138,7 +146,7 @@ const NotesItem = ({ title, description, content, _id }: Props) => {
               variant={"unstyled"}
               resize={"none"}
               _focus={{ outline: "none" }}
-              defaultValue={content}
+              defaultValue={propContent}
               onChange={(e) => setNoteContent(e.target.value)}
             ></Textarea>
           </DrawerBody>
