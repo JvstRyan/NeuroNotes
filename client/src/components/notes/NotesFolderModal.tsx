@@ -14,6 +14,7 @@ import NotesItem from "./NotesItem";
 import FolderCard from "../folders/FolderCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "../../api/note-requests";
+import AddNotes from "./AddNotes";
 
 interface Props {
   name: string;
@@ -72,6 +73,7 @@ const NotesModal = ({ name, description, folderId }: Props) => {
                   _id={item._id}
                 />
               ))}
+              <AddNotes foldId={folderId} />
             </SimpleGrid>
           </ModalBody>
         </ModalContent>

@@ -1,36 +1,45 @@
 import { Button, Card, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { GoPlus } from "react-icons/go";
-import { createFolder} from "../../api/folder-requests";
+import { createNotes } from "../../api/note-requests";
+import { useState } from "react";
 
-const AddFolder = () => {
+interface Props {
+    foldId: string
+}
+
+const AddNotes = ({foldId}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [newFolderName, setNewFolderName] = useState('')
-  const [newFolderDesc, setNewFolderDesc] = useState('')
+  const [noteTitle, setNoteTitle] = useState('')
+  const [noteDescription, setNoteDescription] = useState('')
+  const [noteContent, setNoteContent] = useState('')
 
-  const queryClient = useQueryClient()
 
-  const mutation = useMutation({
-    mutationFn: createFolder,
+ const queryClient = useQueryClient()
+
+ const mutation = useMutation({
+    mutationFn: createNotes,
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['folders']})
+        queryClient.invalidateQueries({queryKey: ['notes']})
     }
-  })
+ })
 
-  const newFolder = () => {
-    mutation.mutate({name: newFolderName, description: newFolderDesc})
+ const createNote = (foldId: string) => {
+    mutation.mutate({title: noteTitle, description: noteDescription, content: noteContent, folderId: foldId})
+    setNoteTitle('')
+    setNoteDescription('')
+    setNoteContent('')
     onClose()
-  }
+ }
+
 
   return (
     <>
       <Card
         _hover={{ backgroundColor: "#F0F0F0" }}
         cursor={"pointer"}
-        w={"sm"}
-        h={"xs"}
-        mb={"1rem"}
+        minW={"xs"} 
+        minH={"xs"}
         borderRadius={"10px"}
         placeContent={"center"}
         alignItems={"center"}
@@ -42,21 +51,29 @@ const AddFolder = () => {
       <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create Folder</ModalHeader>
+          <ModalHeader>Create Note</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
-              <FormLabel>Folder Name:</FormLabel>
+              <FormLabel>Note Name:</FormLabel>
               <Input
                 focusBorderColor="black"
-                onChange={(e) => setNewFolderName(e.target.value)}
+                onChange={(e) => setNoteTitle(e.target.value)}
               />
-              <Flex mt={"10px"} direction={"column"}>
+               <Flex mt={"10px"} direction={"column"}>
                 <FormLabel>Description:</FormLabel>
+                <Textarea
+                  h={"5rem"}
+                  focusBorderColor="black"
+                 onChange={(e) => setNoteDescription(e.target.value)}
+                ></Textarea>
+              </Flex>
+              <Flex mt={"10px"} direction={"column"}>
+                <FormLabel>Content:</FormLabel>
                 <Textarea
                   h={"12rem"}
                   focusBorderColor="black"
-                 onChange={(e) => setNewFolderDesc(e.target.value)}
+                 onChange={(e) => setNoteContent(e.target.value)}
                 ></Textarea>
               </Flex>
             </FormControl>
@@ -68,8 +85,9 @@ const AddFolder = () => {
             <Button
               bg={"#5C5C5C"}
               _hover={{ bg: "#313131" }}
-              onClick={newFolder}
+            //   onClick={newFolder}
               colorScheme="blue"
+              onClick={() => createNote(foldId)}
             >
               Create
             </Button>
@@ -80,4 +98,4 @@ const AddFolder = () => {
   );
 };
 
-export default AddFolder;
+export default AddNotes;
