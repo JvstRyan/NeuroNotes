@@ -1,30 +1,34 @@
 import { Button, FormControl, Input, Spacer } from "@chakra-ui/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { postGoals } from "../../api/goal-requests";
 
 const GoalForm = () => {
   const [namedGoal, setNamedGoal] = useState("");
 
 
-  const postGoals = async () => {
-    try {
-    await axios.post("http://localhost:5000/api/goals", {goal: namedGoal} )
-    } catch(error) {
-    console.error('Create task failed', error)
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: postGoals,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['goals']})
     }
+  })
+
+  const createGoal = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    mutation.mutate({ goal: namedGoal })
+    setNamedGoal('')
   }
 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    postGoals()
-    setNamedGoal('')
-  };
 
   return (
     <>
-      <form onSubmit={handleSubmit} style={{ marginTop: "2rem" }}>
+      <form onSubmit={createGoal} style={{ marginTop: "2rem" }}>
         <FormControl>
           <Input
             type="text"

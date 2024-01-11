@@ -9,11 +9,8 @@ import GoalItem from "./components/goals/GoalItem";
 import NotesModal from "./components/notes/NotesFolderModal";
 import AddFolder from "./components/folders/AddFolder";
 import { useFetchTasks } from "./api/task-requests";
+import { useFetchGoals } from "./api/goal-requests";
 
-interface GoalData {
-  _id: string;
-  goal: string;
-}
 
 interface FolderData {
   _id: string;
@@ -22,22 +19,12 @@ interface FolderData {
 }
 
 const App = () => {
-  const [goals, setGoals] = useState<GoalData[]>([]);
   const [folders, setFolders] = useState<FolderData[]>([]);
 
-  const { data: tasks } = useFetchTasks();
+  const {data: tasks} = useFetchTasks();
+  const {data: goals} = useFetchGoals()
 
-  useEffect(() => {
-    const fetchGoals = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/goals");
-        setGoals(response.data.goal);
-      } catch (error) {
-        console.error("failed to fetch goals", error);
-      }
-    };
-    fetchGoals();
-  }, []);
+  
 
   useEffect(() => {
     const fetchFolders = async () => {
@@ -85,7 +72,7 @@ const App = () => {
             alignItems="center"
           >
             <GoalForm />
-            {goals.map((item) => (
+            {goals?.map((item) => (
               <GoalItem key={item._id} goal={item.goal} _id={item._id} />
             ))}
           </Flex>
