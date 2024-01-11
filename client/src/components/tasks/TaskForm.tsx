@@ -2,7 +2,7 @@ import { Button, FormControl, Input, Spacer } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import { postTask } from "../../api/requests";
+import { postTask } from "../../api/task-requests";
 
 const TaskForm = () => {
   const [namedTask, setNamedTask] = useState("");
@@ -10,16 +10,16 @@ const TaskForm = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: postTask, 
+    mutationFn: postTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks']});
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
-});
-  
+  });
+
   const createTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutation.mutate({ name: namedTask });
-    setNamedTask('');
+    setNamedTask("");
   };
 
   return (

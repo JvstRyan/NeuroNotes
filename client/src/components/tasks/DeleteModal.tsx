@@ -1,6 +1,7 @@
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react"
-import axios from "axios"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { RxCross2 } from "react-icons/rx"
+import { deleteTask } from "../../api/task-requests"
 
 interface Props {
     _id: string
@@ -10,18 +11,25 @@ interface Props {
 function DeleteModal({ _id, task}: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const deleteTask = async (_id: string) => {
-        try {
-        await axios.delete(`http://localhost:5000/api/tasks/${_id}`)
-        } catch(error) {
-            console.error(`${error}`)
-        }
+    const queryClient = useQueryClient()
+
+    const mutation = useMutation({
+      mutationFn: deleteTask,
+      onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ['tasks']})
+      }
+    })
+
+    const removeTask = (id: string) => {
+      mutation.mutate(id)
+      onClose()
     }
-   
-    const handleDelete = (id: string) => {
-        deleteTask(id)
-        onClose()
-    }
+
+
+    // const handleDelete = (id: string) => {
+    //     deleteTask(id)
+    //     onClose()
+    // }
 
     return (
       <>
@@ -43,7 +51,7 @@ function DeleteModal({ _id, task}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={() => handleDelete(_id)} colorScheme='red'>Delete</Button>
+              <Button onClick={() => removeTask(_id)} colorScheme='red'>Delete</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

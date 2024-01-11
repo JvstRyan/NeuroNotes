@@ -8,11 +8,7 @@ import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
 import NotesModal from "./components/notes/NotesFolderModal";
 import AddFolder from "./components/folders/AddFolder";
-import {  useFetchTasks } from "./api/requests";
-
-
-
-
+import { useFetchTasks } from "./api/task-requests";
 
 interface GoalData {
   _id: string;
@@ -29,9 +25,7 @@ const App = () => {
   const [goals, setGoals] = useState<GoalData[]>([]);
   const [folders, setFolders] = useState<FolderData[]>([]);
 
-  const { data: tasks} = useFetchTasks();
-  
- 
+  const { data: tasks } = useFetchTasks();
 
   useEffect(() => {
     const fetchGoals = async () => {
