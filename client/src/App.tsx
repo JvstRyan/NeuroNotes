@@ -1,4 +1,4 @@
-import { Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Container, Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
 import TaskForm from "./components/tasks/TaskForm";
 import TaskItem from "./components/tasks/TaskItem";
 import NavBar from "./components/NavBar";
@@ -21,6 +21,7 @@ const App = () => {
   return (
     <>
       <NavBar />
+      <Flex direction="column" justifyContent="center" alignItems="center" w={'100%'} h={'100%'}>
       <SimpleGrid
         columns={{ sm: 1, md: 2 }}
         placeContent={"center"}
@@ -58,12 +59,12 @@ const App = () => {
           </Flex>
         </GridItem>
       </SimpleGrid>
-      <Flex
-        justify={"center"}
-        align={"center"}
-        gap={"1.5rem"}
-        flexWrap={"wrap"}
-        mb={"5rem"}
+      <SimpleGrid
+        columns={{ sm: 1, md: 3 }}
+        alignItems={'center'}
+        justifyItems={'center'}
+        spacingX={6}
+        
       >
         {folders?.map((item) => (
           <NotesModal
@@ -74,6 +75,7 @@ const App = () => {
           />
         ))}
         <AddFolder />
+      </SimpleGrid>
       </Flex>
     </>
   );

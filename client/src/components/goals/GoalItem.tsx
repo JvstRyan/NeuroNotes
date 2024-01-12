@@ -16,7 +16,7 @@ const handleCheckBox = () => {
 }
   return (
     <>
-     <Box w={{base: '24rem', sm:  '28rem', md: '35rem'}} mt={'1rem'} p={'15px'} pb={'1.5rem'}  borderBottom={'2px solid #000'}>
+     <Box w={{base: '24rem', sm:  '28rem', md: '35rem'}} mt={'1rem'} p={'15px'} pb={'1.45rem'}  borderBottom={'2px solid #000'}>
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>
           <Checkbox onChange={handleCheckBox} />

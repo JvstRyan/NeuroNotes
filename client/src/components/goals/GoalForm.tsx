@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, Spacer } from "@chakra-ui/react";
+import { Button, Flex, FormControl, Input, Spacer } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
@@ -27,7 +27,8 @@ const GoalForm = () => {
 
   return (
     <>
-      <form onSubmit={createGoal} style={{ marginTop: "2rem" }}>
+    <Flex justify={'center'} align={'center'} mt={{sm: '-3.5rem', md:'2.1rem'}}>
+      <form onSubmit={createGoal}>
         <FormControl>
           <Input
             type="text"
@@ -45,6 +46,7 @@ const GoalForm = () => {
           </Button>
         </FormControl>
       </form>
+      </Flex>
     </>
   );
 };
