@@ -1,14 +1,14 @@
-import { Container, Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
-import TaskForm from "./components/tasks/TaskForm";
-import TaskItem from "./components/tasks/TaskItem";
+import { Flex, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { useFetchFolders } from "./api/folder-requests";
+import { useFetchGoals } from "./api/goal-requests";
+import { useFetchTasks } from "./api/task-requests";
 import NavBar from "./components/NavBar";
+import AddFolder from "./components/folders/AddFolder";
 import GoalForm from "./components/goals/GoalForm";
 import GoalItem from "./components/goals/GoalItem";
 import NotesModal from "./components/notes/NotesFolderModal";
-import AddFolder from "./components/folders/AddFolder";
-import { useFetchTasks } from "./api/task-requests";
-import { useFetchGoals } from "./api/goal-requests";
-import { useFetchFolders } from "./api/folder-requests";
+import TaskForm from "./components/tasks/TaskForm";
+import TaskItem from "./components/tasks/TaskItem";
 
 
 

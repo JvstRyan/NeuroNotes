@@ -149,6 +149,7 @@ const NotesItem = ({
             variant={"unstyled"}
             placeSelf={"start"}
             onChange={(e) => setNoteDescription(e.target.value)}
+            placeholder="Add a descripton to your note!"
             spellCheck={false}
           ></Textarea>
           <Divider />
@@ -162,6 +163,7 @@ const NotesItem = ({
               _focus={{ outline: "none" }}
               defaultValue={propContent}
               onChange={(e) => setNoteContent(e.target.value)}
+              placeholder="Start writing your note!"
               spellCheck={false}
             ></Textarea>
           </DrawerBody>

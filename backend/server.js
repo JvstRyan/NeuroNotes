@@ -7,6 +7,7 @@ const userRoutes = require('./routes/taskRouter')
 const goalRoutes = require('./routes/goalRouter')
 const folderRoutes =  require('./routes/noteFolderRouter')
 const noteRoutes = require('./routes/noteRouter')
+const quoteRoutes = require('./routes/quoteRouter')
 const cors = require('cors');
 
 
@@ -21,6 +22,7 @@ app.use('/api/tasks', userRoutes)
 app.use('/api/goals', goalRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/folders', folderRoutes)
+app.use('/api/quotes', quoteRoutes)
 
 
 
