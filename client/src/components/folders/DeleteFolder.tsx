@@ -41,10 +41,10 @@ const DeleteFolder = ({ id, title }: Props) => {
       <Icon
         as={FaTrash}
         cursor={"pointer"}
-        color={"#5C5C5C"}
+        color={"default.200"}
         boxSize={6}
         onClick={onOpen}
-        _hover={{ color: "#313131" }}
+        _hover={{ color: "default.500" }}
       />
       <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
@@ -61,8 +61,8 @@ const DeleteFolder = ({ id, title }: Props) => {
               Close
             </Button>
             <Button
-              bg={"#5C5C5C"}
-              _hover={{ bg: "#313131" }}
+              bg={"default.200"}
+              _hover={{ bg: "default.500" }}
               colorScheme="blue"
               onClick={() => removeFolder(id)}
             >

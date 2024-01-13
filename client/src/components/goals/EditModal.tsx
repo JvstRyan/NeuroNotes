@@ -58,7 +58,7 @@ function EditModal({goal, _id}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button bg={'#5C5C5C'} _hover={{bg: '#313131'}} onClick={() => updateGoal(_id)} colorScheme='blue'>Update</Button>
+              <Button bg={'default.200'} _hover={{bg: 'default.500'}} onClick={() => updateGoal(_id)} colorScheme='blue'>Update</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

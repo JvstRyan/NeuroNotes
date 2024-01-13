@@ -53,9 +53,9 @@ function EditFolder({ title, description: propDesc, _id }: Props) {
     <>
       <Icon
         as={AiFillEdit}
-        color={"#5C5C5C"}
+        color={"default.200"}
         cursor={"pointer"}
-        _hover={{ color: "#313131" }}
+        _hover={{ color: "default.500" }}
         boxSize={6}
         onClick={onOpen}
       />
@@ -90,8 +90,8 @@ function EditFolder({ title, description: propDesc, _id }: Props) {
               Close
             </Button>
             <Button
-              bg={"#5C5C5C"}
-              _hover={{ bg: "#313131" }}
+              bg={"default.200"}
+              _hover={{ bg: "default.500" }}
               onClick={() => updateFolder(_id)}
               colorScheme="blue"
             >

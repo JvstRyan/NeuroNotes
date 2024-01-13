@@ -37,7 +37,7 @@ const AddFolder = () => {
         variant={"elevated"}
         onClick={onOpen}
       >
-        <GoPlus size={60} color={"#5C5C5C"} />
+        <GoPlus size={60} color={"default.200"} />
       </Card>
       <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
@@ -66,15 +66,15 @@ const AddFolder = () => {
               Close
             </Button>
             <Button
-              bg={"#5C5C5C"}
-              _hover={{ bg: "#313131" }}
+              bg={"default.200"}
+              _hover={{ bg: "default.500" }}
               onClick={newFolder}
               colorScheme="blue"
             >
               Create
             </Button>
           </ModalFooter>
-        </ModalContent>
+        </ModalContent> 
       </Modal>
     </>
   );

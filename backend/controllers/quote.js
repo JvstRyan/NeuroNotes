@@ -37,7 +37,13 @@ const updateQuote = expressAsyncHandler(async(req, res) => {
 
 // Delete Quote
 const deleteQuote = expressAsyncHandler(async(req, res) => {
-    res.status(200).json({msg: 'deleted quote'})
+    const {id: quoteID} = req.params
+    const quote = await Quote.findOneAndDelete({_id: quoteID})
+
+    if (!quote) {
+        res.status(500).json({msg: `Quote with id: ${quoteID}, could not be deleted`})
+    }
+    res.status(201).json({quote})
 })
 
 module.exports = {

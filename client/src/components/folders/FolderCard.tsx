@@ -63,14 +63,14 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
         </CardHeader>
         <CardBody>
           <Flex align={"center"} justify={"center"}>
-            <PiNoteBlankThin onClick={onClick} cursor={'pointer'} color={"#5C5C5C"} size={100} />
+            <PiNoteBlankThin onClick={onClick} cursor={'pointer'} color={"default.500"} size={100} />
           </Flex>
         </CardBody>
         <CardFooter
-          bg={"#5C5C5C"}
+          bg={"default.200"}
           mt={"3rem"}
           onClick={onClick}
-          _hover={{ backgroundColor: "#313131" }}
+          _hover={{ backgroundColor: "default.500" }}
           cursor={"pointer"}
         >
           <Flex align={"center"} justify={"space-between"}>

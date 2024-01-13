@@ -19,10 +19,9 @@ const handleCheckBox = () => {
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>
           <Checkbox onChange={handleCheckBox} />
-          <Text as={isChecked ? 'del' : 'b'} borderRadius={'5px'} colorScheme="blue" fontWeight={'600'} fontSize={'18px'}>{goal}</Text>
+          <Text as={isChecked ? 'del' : 'b'} borderRadius={'5px'} color={'black'} fontWeight={'600'} fontSize={'18px'}>{goal}</Text>
           </Flex>
           <Flex gap={'1rem'}>
-          {/* <Text fontWeight={'bold'} fontSize={'17px'}>2023</Text> */}
          { !isChecked && <EditModal goal={goal} _id={_id} /> }
           <DeleteModal goal={goal} _id={_id}/>
           </Flex>

@@ -45,7 +45,7 @@ function DeleteModal({ _id, goal}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={() => removeGoal(_id)} colorScheme='red'>Delete</Button>
+              <Button onClick={() => removeGoal(_id)} color={'white'} bg={'default.200'} _hover={{bg: 'default.500'}}>Delete</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
