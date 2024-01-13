@@ -32,7 +32,7 @@ const TaskForm = () => {
             variant={"flushed"}
             focusBorderColor={"black"}
             placeholder="Enter your daily tasks📃"
-            w={{ base: "24rem", sm: "28rem", md: "35rem" }}
+            w={{ base: '410px', sm:  '448px', md: '560px'}}
             value={namedTask}
             onChange={(e) => setNamedTask(e.target.value)}
           ></Input>
@@ -42,7 +42,7 @@ const TaskForm = () => {
             _hover={{ bg: "white" }}
             variant={"outline"}
             border={"2px solid black"}
-            w={{ base: "24rem", sm: "28rem", md: "35rem" }}
+            w={{ base: '410px', sm:  '448px', md: '560px'}}
             h={"3rem"}
             type="submit"
           >

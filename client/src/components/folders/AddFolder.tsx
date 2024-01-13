@@ -28,7 +28,7 @@ const AddFolder = () => {
       <Card
         _hover={{ backgroundColor: "#F0F0F0" }}
         cursor={"pointer"}
-        w={{sm: 'md', md: "sm"}}
+        w={{base: '450px', md: "385px"}}
         h={"xs"}
         mb={"1rem"}
         borderRadius={"10px"}

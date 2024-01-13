@@ -28,7 +28,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
 
   return (
     <>
-      <Card w={{sm: 'md', md: 'sm'}} h={"xs"} mb={"1rem"} borderRadius={"10px"}>
+      <Card w={{base: '450px', md: '385px'}} h={"xs"} mb={"1rem"} borderRadius={"10px"}>
         <CardHeader>
           <Flex zIndex={"10"} justify={"space-between"} align={"center"}>
             <Text size={"15px"} fontWeight={"600"} color={"#5C5C5C"}>

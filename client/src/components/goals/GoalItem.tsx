@@ -1,6 +1,5 @@
 import {  Flex, Checkbox,  Box,  Text } from "@chakra-ui/react"
 import { useState } from "react"
-import { CiEdit } from "react-icons/ci"
 import DeleteModal from "./DeleteModal"
 import EditModal from "./EditModal"
 
@@ -16,7 +15,7 @@ const handleCheckBox = () => {
 }
   return (
     <>
-     <Box w={{base: '24rem', sm:  '28rem', md: '35rem'}} mt={'1rem'} p={'15px'} pb={'1.45rem'}  borderBottom={'2px solid #000'}>
+     <Box w={{base: '410px', sm:  '448px', md: '560px'}} mt={'1rem'} p={'15px'} pb={'1.45rem'}  borderBottom={'2px solid #000'}>
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>
           <Checkbox onChange={handleCheckBox} />

@@ -18,7 +18,7 @@ const handleCheckBox = () => {
 
   return (
     <>
-      <Card w={{base: '24rem', sm:  '28rem', md: '35rem'}} mt={'1rem'} borderRadius={'10px'}>
+      <Card w={{base: '410px', sm:  '448px', md: '560px'}} mt={'1rem'} borderRadius={'10px'}>
         <CardBody>
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>

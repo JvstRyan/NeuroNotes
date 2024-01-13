@@ -27,7 +27,7 @@ const GoalForm = () => {
 
   return (
     <>
-    <Flex justify={'center'} align={'center'} mt={{sm: '-3.5rem', md:'2.1rem'}}>
+    <Flex justify={'center'} align={'center'} mt={{base: '-56px', md:'33px'}}>
       <form onSubmit={createGoal}>
         <FormControl>
           <Input
