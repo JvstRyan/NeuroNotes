@@ -13,7 +13,7 @@ const quoteSchema = mongoose.Schema({
     favourite: {
         type: Boolean
     },
-    Note: {
+    note: {
         type: String
     }
 })

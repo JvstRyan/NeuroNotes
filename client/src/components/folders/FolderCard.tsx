@@ -74,7 +74,7 @@ const NotesCard = ({ onClick, title, description, id }: Props) => {
           cursor={"pointer"}
         >
           <Flex align={"center"} justify={"space-between"}>
-            <Text color={"white"} fontWeight={"500"}>
+            <Text color={"white"} fontSize={'17px'} fontWeight={"600"}>
               {title}
             </Text>
           </Flex>

@@ -4,9 +4,29 @@ import { FaStar } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import QuoteItem from "./QuoteItem";
+import axios from "axios";
+
+interface Quote {
+    _id: string
+    name: string
+    person: string
+    favourite: boolean
+}
 
 const QuoteForm = () => {
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
+  const [quotes, setQuotes] = useState('')
+
+  const fetchQuotes = async () => {
+    try {
+    const response = await axios.get('http://localhost:5000/api/quotes?favourite=true')
+    
+    } catch {
+
+    }
+  }
+
+
   return (
     <>
       <Text
