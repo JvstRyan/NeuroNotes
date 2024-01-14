@@ -4,27 +4,18 @@ import { FaStar } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import QuoteItem from "./QuoteItem";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { Quote, fetchQuotes } from "../../api/quote-request";
 
-interface Quote {
-    _id: string
-    name: string
-    person: string
-    favourite: boolean
-}
+
 
 const QuoteForm = () => {
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
-  const [quotes, setQuotes] = useState('')
 
-  const fetchQuotes = async () => {
-    try {
-    const response = await axios.get('http://localhost:5000/api/quotes?favourite=true')
-    
-    } catch {
-
-    }
-  }
+  const {data: quotes} = useQuery<Quote[]>({
+      queryKey: ['quotes'],
+      queryFn: () => fetchQuotes('true')
+  })
 
 
   return (
@@ -78,8 +69,10 @@ const QuoteForm = () => {
       <Box w={'100%'}>
       <Divider borderColor={"black"} w={'100%'} />
       </Box>
-      <Flex mt={"1rem"} w={'100%'}>
-        <QuoteItem />
+      <Flex mt={"1rem"} w={'100%'} direction={'column'}>
+        {quotes?.map((item) => (
+            <QuoteItem key={item._id} name={item.name} person={item.person} favourite={item.favourite} _id={item._id} note={item.note} />
+        ))}
       </Flex>
     </>
   );
