@@ -22,7 +22,7 @@ const handleCheckBox = () => {
         <CardBody>
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>
-          <Checkbox onChange={handleCheckBox} />
+          <Checkbox colorScheme="green" onChange={handleCheckBox} />
           <Text as={isChecked ? 'del' : 'b'} fontWeight={'600'}  fontSize={'18px'}>{task}</Text>
           </Flex>
           <Flex gap={'1rem'}>

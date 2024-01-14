@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Spacer, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
@@ -10,13 +10,25 @@ import { Quote, fetchQuotes } from "../../api/quote-request";
 
 
 const QuoteForm = () => {
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
+  const [selectedButton, setSelectedButton] = useState('true');
+  const [statement, setStatement] = useState('true')
 
-  const {data: quotes} = useQuery<Quote[]>({
-      queryKey: ['quotes'],
-      queryFn: () => fetchQuotes('true')
+  const {data: quotes, refetch, isLoading} = useQuery<Quote[]>({
+      queryKey: ['quotes', statement],
+      queryFn: () => fetchQuotes(statement)
   })
 
+  const handleTrueClick = () => {
+    setSelectedButton("true")
+    setStatement('true')
+    refetch()
+  }
+
+  const handleFalseClick = () => {
+    setSelectedButton('false')
+    setStatement('false')
+    refetch()
+  }
 
   return (
     <>
@@ -35,22 +47,22 @@ const QuoteForm = () => {
               fontSize={"16px"}
               color={"default.200"}
               variant={"none"}
-              onClick={() => setSelectedButton("favourite")}
+              onClick={handleTrueClick}
             >
               <FaStar size={16} />
               <Spacer w={"3px"} />
               Favourite
             </Button>
-            {selectedButton === 'favourite' && <Divider borderColor={'black'}/>}
+            {selectedButton === 'true' && <Divider borderColor={'black'}/>}
           </Flex>
           <Flex direction={'column'}>
           <Button fontSize={"16px"} color={"default.200"} variant={"none"}
-          onClick={() => setSelectedButton('Recently Added')}>
+          onClick={handleFalseClick}>
             <FaClock size={15} />
             <Spacer w={"3px"} />
             Recently Added
           </Button>
-          {selectedButton === 'Recently Added' && <Divider borderColor={'black'}/>}
+          {selectedButton === 'false' && <Divider borderColor={'black'}/>}
           </Flex>
         </Flex>
         <Button
@@ -70,6 +82,7 @@ const QuoteForm = () => {
       <Divider borderColor={"black"} w={'100%'} />
       </Box>
       <Flex mt={"1rem"} w={'100%'} direction={'column'}>
+      {isLoading ? <Spinner /> : ''}
         {quotes?.map((item) => (
             <QuoteItem key={item._id} name={item.name} person={item.person} favourite={item.favourite} _id={item._id} note={item.note} />
         ))}
