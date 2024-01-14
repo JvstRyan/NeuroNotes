@@ -11,20 +11,50 @@ import {
   DrawerOverlay,
   Flex,
   Input,
-  Spacer,
   Text,
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaBookmark } from "react-icons/fa6";
-import { Quote } from "../../api/quote-request";
+import { Quote, updateQuotes } from "../../api/quote-request";
 import { IoPersonOutline } from "react-icons/io5";
 import { CiSquareCheck } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { SlNotebook } from "react-icons/sl";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
-const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
+const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourite, _id, note: propNote }: Quote) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const favouriteValue = JSON.parse(propFavourite)
+
+  const [quoteName, setQuoteName] = useState(propName)
+  const [quotePerson, setQuotePerson] = useState(propPerson)
+  const [quoteFavourite, setQuoteFavourite] = useState(favouriteValue)
+  const [quoteNote, setQuoteNote] = useState(propNote)
+
+
+
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: updateQuotes,
+    onSuccess: () => {
+        queryClient.invalidateQueries()
+    }
+  })
+
+  const patchQuotes = () => {
+    const name = quoteName !== '' ? quoteName : propName
+    const person = quotePerson !== '' ? quotePerson : propPerson
+    const favourite = quoteFavourite !== propFavourite ? quoteFavourite : propFavourite
+    const note = quoteNote !== '' ? quoteNote : propNote
+    if(quoteName !== propName || quotePerson !== propPerson || quoteFavourite !== propFavourite || quoteNote !== propNote) {
+        mutation.mutate({id: _id, body: {name, person, favourite, note}})
+    }
+    onClose()
+  }
+
   return (
     <>
       <Flex
@@ -48,16 +78,16 @@ const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
             fontSize={"18px"}
             fontWeight={"600"}
           >
-            {name}
+            {propName}
           </Text>
         </Flex>
         <Flex align={"center"}>
           <Text as={"u"} fontSize={"18px"} fontWeight={"600"}>
-            ~ {person}
+            ~ {propPerson}
           </Text>
         </Flex>
       </Flex>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
+      <Drawer isOpen={isOpen} placement="right" onClose={patchQuotes} size="md">
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton zIndex={"10"} />
@@ -66,9 +96,9 @@ const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
               color={"default.500"}
               fontWeight={"600"}
               fontSize={"2rem"}
-              defaultValue={name}
+              defaultValue={propName}
               variant={"unstyled"}
-              //   onChange={(e) => setNoteTitle(e.target.value)}
+              onChange={(e) => setQuoteName(e.target.value)}
               spellCheck={false}
               whiteSpace={"none"}
               w={"100%"}
@@ -89,7 +119,8 @@ const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
                 </Flex>
                 <Input
                 w={'100%'}
-                defaultValue={person}
+                defaultValue={propPerson}
+                onChange={(e) => setQuotePerson(e.target.value)}
                 variant={'none'}
                 fontSize={'18px'}
                 
@@ -101,7 +132,7 @@ const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
                 <CiSquareCheck size={20} />
                   <Text >Favourite:</Text>
                 </Flex>
-                <Checkbox colorScheme='green' size={'md'}>
+                <Checkbox onChange={(e) => setQuoteFavourite(e.target.checked)} isChecked={quoteFavourite} colorScheme='green' size={'md'}>
 
                 </Checkbox>
               </Flex>
@@ -113,7 +144,8 @@ const QuoteItem = ({ name, person, favourite, _id, note }: Quote) => {
               </Flex>
               <Divider mt={'20px'} />
               <Textarea 
-              defaultValue={note}
+              defaultValue={propNote}
+              onChange={(e) => setQuoteNote(e.target.value)}
               mt={'10px'}
               fontSize={'18px'}
               color={'default.500'}

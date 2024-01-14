@@ -60,7 +60,9 @@ const NotesItem = ({
     const description =
       noteDescription !== "" ? noteDescription : propDescription;
     const content = noteContent !== "" ? noteContent : propContent;
+    if (noteTitle !== propTitle || noteDescription !== propDescription || noteContent !== propContent) {
     mutation.mutate({ id: _id, body: { title, description, content } });
+    }
     onClose();
   };
 

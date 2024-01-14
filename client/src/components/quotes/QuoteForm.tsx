@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 import QuoteItem from "./QuoteItem";
 import { useQuery } from "@tanstack/react-query";
 import { Quote, fetchQuotes } from "../../api/quote-request";
+import CreateQuote from "./CreateQuote";
 
 
 
@@ -65,23 +66,12 @@ const QuoteForm = () => {
           {selectedButton === 'false' && <Divider borderColor={'black'}/>}
           </Flex>
         </Flex>
-        <Button
-          fontSize={"16px"}
-          variant={"none"}
-
-          // color={"white"}
-          // bg={"default.200"}
-          // _hover={{ bg: "default.500" }}
-        >
-          <FaPlus size={16} />
-          <Spacer w={"3px"} />
-          New Quote
-        </Button>
+       <CreateQuote />
       </Flex>
       <Box w={'100%'}>
       <Divider borderColor={"black"} w={'100%'} />
       </Box>
-      <Flex mt={"1rem"} w={'100%'} direction={'column'}>
+      <Flex mt={"1rem"} w={'100%'} h={'100%'} direction={'column'}>
       {isLoading ? <Spinner /> : ''}
         {quotes?.map((item) => (
             <QuoteItem key={item._id} name={item.name} person={item.person} favourite={item.favourite} _id={item._id} note={item.note} />
