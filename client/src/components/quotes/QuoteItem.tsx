@@ -23,6 +23,7 @@ import { RxCross2 } from "react-icons/rx";
 import { SlNotebook } from "react-icons/sl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import DeleteQuote from "./DeleteQuote";
 
 const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourite, _id, note: propNote }: Quote) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,7 +41,7 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
   const mutation = useMutation({
     mutationFn: updateQuotes,
     onSuccess: () => {
-        queryClient.invalidateQueries()
+        queryClient.invalidateQueries({queryKey: ['quotes']})
     }
   })
 
@@ -108,10 +109,7 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
           <Divider />
           <DrawerBody mt={"1rem"}>
             <Flex fontSize={"18px"} justify={"start"} align={"start"} direction={"column"}>
-            <Button bg={'default.100'} mb={'1rem'} alignItems={'center'} gap={'5px'}>
-                <RxCross2 size={20}/>
-                    Remove Quote
-                </Button>
+                <DeleteQuote person={propPerson} id={_id} />
               <Flex align={'center'}>
                 <Flex color={"default.200"} align={"center"} gap={"5px"}>
                   <IoPersonOutline size={20} />

@@ -2,7 +2,6 @@ import { Box, Button, Divider, Flex, Spacer, Spinner, Text } from "@chakra-ui/re
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa6";
 import QuoteItem from "./QuoteItem";
 import { useQuery } from "@tanstack/react-query";
 import { Quote, fetchQuotes } from "../../api/quote-request";
@@ -14,7 +13,7 @@ const QuoteForm = () => {
   const [selectedButton, setSelectedButton] = useState('true');
   const [statement, setStatement] = useState('true')
 
-  const {data: quotes, refetch, isLoading} = useQuery<Quote[]>({
+  const {data: quotes, isLoading} = useQuery<Quote[]>({
       queryKey: ['quotes', statement],
       queryFn: () => fetchQuotes(statement)
   })
@@ -22,13 +21,11 @@ const QuoteForm = () => {
   const handleTrueClick = () => {
     setSelectedButton("true")
     setStatement('true')
-    refetch()
   }
 
   const handleFalseClick = () => {
     setSelectedButton('false')
     setStatement('false')
-    refetch()
   }
 
   return (

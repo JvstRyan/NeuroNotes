@@ -1,12 +1,28 @@
-import { Button, Card, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spacer, Textarea, useDisclosure } from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spacer, Textarea, useDisclosure } from "@chakra-ui/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { createQuote } from "../../api/quote-request";
 
 const CreateQuote = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [quoteName, setQuoteName] = useState('')
   const [quotePerson, setQuotePerson] = useState('')
   const [quoteNote, setQuoteNote] = useState('')
+
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: createQuote,
+    onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ['quotes']})
+    }
+  })
+
+  const postQuote = () => {
+    mutation.mutate({name: quoteName, person: quotePerson, favourite: true, note: quoteNote})
+    onClose()
+  }
  
   return (
     <>
@@ -58,7 +74,7 @@ const CreateQuote = () => {
             <Button
               bg={"default.200"}
               _hover={{ bg: "default.500" }}
-              
+              onClick={postQuote}
               colorScheme="blue"
             >
               Create

@@ -30,3 +30,25 @@ export const updateQuotes = async ({id, body}: {id: string, body: {name: string,
     console.error('Quote could not be updated', error)
     }
 }
+
+
+//Create quote
+
+export const createQuote = async (body: {name: string, person: string, favourite: boolean, note: string}) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/api/quotes`, body)
+      return response.data.quote
+    } catch(error) {
+        console.error('Could not create quote', error)
+    }
+}
+
+//Delete quote
+export const deleteQuote = async (_id: string) => {
+    try {
+        await axios.delete(`http://localhost:5000/api/quotes/${_id}`)
+      } catch(error) {
+        console.error('Could not delete quote', error)
+      }
+}
+
