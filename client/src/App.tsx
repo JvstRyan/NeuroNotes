@@ -10,6 +10,8 @@ import NotesModal from "./components/notes/NotesFolderModal";
 import TaskForm from "./components/tasks/TaskForm";
 import TaskItem from "./components/tasks/TaskItem";
 import QuoteForm from "./components/quotes/QuoteForm";
+import BookForm from "./components/books/BookForm";
+import BookItem from "./components/books/BookItem";
 
 const App = () => {
   const { data: tasks } = useFetchTasks();
@@ -80,12 +82,31 @@ const App = () => {
           <AddFolder />
         </SimpleGrid>
         <SimpleGrid
+          placeContent={'center'}
           columns={[1]}
-          w={"79%"}
+          minW={'75rem'}
         >
           <QuoteForm />
         </SimpleGrid>
+        <SimpleGrid
+          placeContent={'center'}
+          columns={[1]}
+          minW={'75rem'}
+        >
+          <BookForm />
+        </SimpleGrid>
+        <SimpleGrid
+          columns={{ sm: 1, md: 3 }}
+          alignItems={"center"}
+          justifyItems={"center"}
+          spacingX={6}
+        >
+          <BookItem />
+          <BookItem />
+          <BookItem />
+        </SimpleGrid>
       </Flex>
+      
     </>
   );
 };
