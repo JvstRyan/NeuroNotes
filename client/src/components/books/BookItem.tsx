@@ -23,8 +23,9 @@ import { CiSquareCheck } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import { SlNotebook } from "react-icons/sl";
 import { FaBookBookmark } from "react-icons/fa6";
+import { Books } from "../../api/book-request";
 
-const BookItem = () => {
+const BookItem = ({_id, name, author, totalpages, currentpage, notes, reading}: Books ) => {
   // const [showIcons, setShowIcons] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -50,7 +51,7 @@ const BookItem = () => {
               mt={"5px"}
               maxW={'60%'}
             >
-             Atomic Habits
+             {name}
             </Badge>
           </Flex>
           <Divider mt={'2rem'} />
@@ -63,9 +64,9 @@ const BookItem = () => {
           <Flex color={'default.200'} direction={"column"}  justify={"start"}>
             <Flex gap={'7px'} align={'center'}>
             <FaBookBookmark  />
-            <Text fontWeight={'600'} maxWidth={'90%'} whiteSpace={'nowrap'} isTruncated fontSize={'17px'}>Atomic Habits</Text>
+            <Text fontWeight={'600'} maxWidth={'90%'} whiteSpace={'nowrap'} isTruncated fontSize={'17px'}>{name}</Text>
             </Flex>
-            <Text mb={'3px'}>James Clear</Text>
+            <Text mb={'3px'}>{author}</Text>
             <Flex align={"center"} gap={"10px"}>
               <Text fontSize={'15px'} fontWeight={"600"}>
                 80%
@@ -92,7 +93,7 @@ const BookItem = () => {
               color={"default.500"}
               fontWeight={"600"}
               fontSize={"2rem"}
-              defaultValue={"How to make friends and infleunce people"}
+              defaultValue={name}
               variant={"unstyled"}
               //   onChange={(e) => setQuoteName(e.target.value)}
               spellCheck={false}
@@ -145,7 +146,7 @@ const BookItem = () => {
               </Flex>
               <Divider mt={"20px"} />
               <Textarea
-                defaultValue={""}
+                defaultValue={notes}
                 //   onChange={(e) => setQuoteNote(e.target.value)}
                 mt={"10px"}
                 fontSize={"18px"}

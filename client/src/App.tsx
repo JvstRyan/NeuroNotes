@@ -12,11 +12,14 @@ import TaskItem from "./components/tasks/TaskItem";
 import QuoteForm from "./components/quotes/QuoteForm";
 import BookForm from "./components/books/BookForm";
 import BookItem from "./components/books/BookItem";
+import { useFetchBooks } from "./api/book-request";
 
 const App = () => {
   const { data: tasks } = useFetchTasks();
   const { data: goals } = useFetchGoals();
   const { data: folders } = useFetchFolders();
+  const {data: books} = useFetchBooks()
+  
 
   return (
     <>
@@ -102,9 +105,22 @@ const App = () => {
           spacingX={6}
           mb={'5rem'}
         >
-          <BookItem />
-          <BookItem />
-          <BookItem />
+          {
+            books?.map((item) => (
+              <BookItem 
+              key={item._id}
+              name={item.name}
+              author={item.author}
+              totalpages={item.totalpages}
+              currentpage={item.currentpage}
+              notes={item.notes}
+              reading={item.reading}
+              _id={item._id}
+              />
+            ))
+          }
+          
+
         </SimpleGrid>
       </Flex>
       
