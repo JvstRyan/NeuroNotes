@@ -11,6 +11,10 @@ const bookSchema = mongoose.Schema({
     author: {
         type: String,
     },
+    reading: {
+        type: Boolean,
+
+    },
     totalpages: {
         type: String
     },
@@ -20,10 +24,6 @@ const bookSchema = mongoose.Schema({
     notes: {
         type: String,
         trim: true
-    },
-    reading: {
-        type: Boolean,
-
     },
 })
 
