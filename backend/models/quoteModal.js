@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const quoteSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     person: {
         type: String,
@@ -14,7 +15,8 @@ const quoteSchema = mongoose.Schema({
         type: Boolean
     },
     note: {
-        type: String
+        type: String,
+        trim: true
     }
 })
 

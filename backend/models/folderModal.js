@@ -9,7 +9,8 @@ const folderSchema = mongoose.Schema({
     maxlength: 100,
   },
   description: {
-    type: String
+    type: String,
+    trim: true
   },
   createdAt: {
     type: Date,
