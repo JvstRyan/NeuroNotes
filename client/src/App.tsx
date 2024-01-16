@@ -100,6 +100,7 @@ const App = () => {
           alignItems={"center"}
           justifyItems={"center"}
           spacingX={6}
+          mb={'5rem'}
         >
           <BookItem />
           <BookItem />
