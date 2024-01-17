@@ -19,7 +19,6 @@ import { FaBookmark } from "react-icons/fa6";
 import { Quote, updateQuotes } from "../../api/quote-request";
 import { IoPersonOutline } from "react-icons/io5";
 import { CiSquareCheck } from "react-icons/ci";
-import { RxCross2 } from "react-icons/rx";
 import { SlNotebook } from "react-icons/sl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
