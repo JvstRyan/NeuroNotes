@@ -35,6 +35,7 @@ const QuoteForm = () => {
         fontSize={"26px"}
         color="default.500"
         mt={"1rem"}
+        ml={{sm: '1rem', md: '0rem'}}
       >
         Quotes
       </Text>

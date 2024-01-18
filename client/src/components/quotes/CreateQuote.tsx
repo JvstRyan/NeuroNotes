@@ -30,6 +30,7 @@ const CreateQuote = () => {
           fontSize={"16px"}
           variant={"none"}
           onClick={onOpen}
+          mr={{sm: '1rem', md: '0rem'}}
           >
           <FaPlus size={16} />
           <Spacer w={"3px"} />

@@ -13,6 +13,7 @@ import {
   Input,
   Text,
   Textarea,
+  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaBookmark } from "react-icons/fa6";
@@ -32,7 +33,7 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
   const [quotePerson, setQuotePerson] = useState(propPerson)
   const [quoteFavourite, setQuoteFavourite] = useState(favouriteValue)
   const [quoteNote, setQuoteNote] = useState(propNote)
-
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
 
   const queryClient = useQueryClient()
@@ -69,7 +70,7 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
         align={"center"}
         w={"100%"}
       >
-        <Flex align={"center"} gap={"5px"} maxWidth={"80%"}>
+        <Flex ml={{sm: '1rem', md: '0rem'}} align={"center"} gap={"5px"} maxWidth={{sm: '90%', md: '80%'}}>
           <FaBookmark size={19} />
           <Text
             isTruncated
@@ -81,11 +82,13 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
             {propName}
           </Text>
         </Flex>
+        {!isMobile &&
         <Flex align={"center"}>
+         
           <Text as={"u"} fontSize={"18px"} fontWeight={"600"}>
             ~ {propPerson}
           </Text>
-        </Flex>
+        </Flex>}
       </Flex>
       <Drawer isOpen={isOpen} placement="right" onClose={patchQuotes} size="md">
         <DrawerOverlay />

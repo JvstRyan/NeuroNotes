@@ -86,14 +86,14 @@ const App = () => {
         <SimpleGrid
           placeContent={'center'}
           columns={[1]}
-          minW={'75rem'}
+          minW={{ sm: '', md: '75rem'}}
         >
           <QuoteForm />
         </SimpleGrid>
         <SimpleGrid
           placeContent={'center'}
           columns={[1]}
-          minW={'75rem'}
+          minW={{ sm: '', md: '75rem'}}
         >
           <BookForm />
         </SimpleGrid>
