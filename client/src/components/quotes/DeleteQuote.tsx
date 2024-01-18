@@ -39,7 +39,6 @@ const DeleteQuote = ({ id, person }: Props) => {
   return (
     <>
       <Button onClick={onOpen} bg={"default.100"} mb={"1rem"} alignItems={"center"} gap={"5px"}>
-        <RxCross2 size={20} />
         Remove Quote
       </Button>
       <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">

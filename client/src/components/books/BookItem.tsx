@@ -25,6 +25,7 @@ import { FaBookBookmark } from "react-icons/fa6";
 import { Books, updateBooks } from "../../api/book-request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import DeleteBook from "./DeleteBook";
 
 const BookItem = ({
   _id,
@@ -183,7 +184,7 @@ const BookItem = ({
               align={"start"}
               direction={"column"}
             >
-              {/* <DeleteQuote person={propPerson} id={_id} /> */}
+            <DeleteBook author={propAuthor} id={_id} />
               <Flex align={"center"}>
                 <Flex color={"default.200"} align={"center"} gap={"5px"}>
                   <IoPersonOutline size={20} />

@@ -14,11 +14,12 @@ import { FaBookBookmark } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa6";
 import BookItem from "./BookItem";
 import { useFetchBooks } from "../../api/book-request";
+import CreateBook from "./CreateBook";
 
 const BookForm = () => {
   const [selectedButton, setSelectedButton] = useState("books");
   const [statement, setStatement] = useState<boolean | undefined>(undefined)
-  const {data: books, isLoading, isFetching} = useFetchBooks(statement)
+  const {data: books, isFetching} = useFetchBooks(statement)
 
   return (
     <>
@@ -72,11 +73,7 @@ const BookForm = () => {
             {selectedButton === "read" && <Divider borderColor={"black"} />}
           </Flex>
         </Flex>
-        <Button fontSize={"16px"} variant={"none"}>
-          <FaPlus size={16} />
-          <Spacer w={"3px"} />
-          New Book
-        </Button>
+        <CreateBook />
       </Flex>
       <Box w={"100%"}>
         <Divider borderColor={"black"} w={"100%"} />
@@ -87,6 +84,7 @@ const BookForm = () => {
           justifyItems={"center"}
           spacingX={6}
           mb={'5rem'}
+          mt={'1rem'}
         >
          { isFetching ? <Spinner /> : ''}
           {

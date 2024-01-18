@@ -40,3 +40,24 @@ export const updateBooks = async ({id, body}: {id: string, body: {name: string, 
         console.error('Failed to update book', error)
     }
 }
+
+
+//Create Book
+export const createBooks = async (body: {name: string, author: string, totalpages: string, currentpage: string, notes: string, reading: boolean}) => {
+    try {
+    await axios.post(`http://localhost:5000/api/books/`, body)
+    } catch(error) {
+    console.error('Failed to create book', error)
+    }
+}
+
+
+//Delete Book
+
+export const deleteBooks = async (id: string) => {
+    try {
+    await axios.delete(`http://localhost:5000/api/books/${id}`)
+    } catch(error) {
+    console.error('Failed to create book', error)
+    }
+}
