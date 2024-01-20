@@ -51,7 +51,7 @@ function DeleteModal({ _id, task}: Props) {
               <Button variant='ghost' mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={() => removeTask(_id)} colorScheme='red'>Delete</Button>
+              <Button onClick={() => removeTask(_id)} color={'white'} bg={'default.200'} >Delete</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
