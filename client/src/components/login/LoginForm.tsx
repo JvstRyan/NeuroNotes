@@ -7,8 +7,8 @@ const isMobile = useBreakpointValue({ base: true, md: false });
     <Flex>
       <Box width={["100%", "100%", "50%", "30%"]} p={5}>
         <Flex direction={'column'} justify={'center'} align={'center'}>
-        <Flex mt={'2rem'} justify={"center"} align={"center"}>
-          <Image boxSize={'10rem'} src='/NeuroNotes.png'  draggable={false} />
+        <Flex mt={'1rem'} justify={"center"} align={"center"}>
+          <Image boxSize={'8rem'} src='/NeuroNotes.png' draggable={false} />
         </Flex>
         <Flex justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
           <Button
@@ -90,7 +90,7 @@ const isMobile = useBreakpointValue({ base: true, md: false });
             zIndex: "-1",
           }}
         >
-          <source src="/NeuroNotes.mp4" type="video/mp4" />
+          <source src="/NeuroNote.mp4" type="video/mp4" />
         </video> 
       </Box> }
     </Flex>

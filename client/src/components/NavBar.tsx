@@ -6,7 +6,8 @@ const NavBar = () => {
     <>
         <Flex p={'10px'} ml={{sm: '1rem', md: '5rem'}} justify={'space-between'} align={'center'}>
             <Image 
-            src="NeuroNotes.svg"
+            src="/NeuroNotes.png"
+            boxSize={'90px'}
             alt="NeuroNotes"
             draggable={false}
             />
