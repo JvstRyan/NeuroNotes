@@ -17,7 +17,7 @@ const isMobile = useBreakpointValue({ base: true, md: false });
             borderRadius={"5px"}
             bg={"default.200"}
             color={"white"}
-            _hover={{backgroundColor: 'default.200'}}
+            _hover={{backgroundColor: 'default.500'}}
           >
             Login
           </Button>
@@ -37,6 +37,8 @@ const isMobile = useBreakpointValue({ base: true, md: false });
             <Input
             variant={'flushed'}
             placeholder="Email Address"
+            required
+            type="email"
             focusBorderColor="black"
             h={'3rem'}
             w={'26rem'}
@@ -47,13 +49,15 @@ const isMobile = useBreakpointValue({ base: true, md: false });
             <Input
             variant={'flushed'}
             placeholder="Password"
+            required
+            type="password"
             focusBorderColor="black"
             h={'3rem'}
             >
 
             </Input>
             <Flex direction={'column'} justify={'center'} align={'center'}>
-            <Button mt={'3rem'} w={'100%'} color={'white'} fontSize={'20px'} h={'3rem'} bg={'default.200'}>
+            <Button  _hover={{backgroundColor: 'default.500'}} type="button" onSubmit={() => console.log('clicked')} mt={'3rem'} w={'100%'} color={'white'} fontSize={'20px'} h={'3rem'} bg={'default.200'}>
                 Login
             </Button>
             <Text mt={'2rem'}>Don't have an account? <b><u>Signup now</u></b></Text>

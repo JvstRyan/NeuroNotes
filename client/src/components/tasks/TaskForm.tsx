@@ -35,6 +35,7 @@ const TaskForm = () => {
             w={{ base: '410px', sm:  '448px', md: '560px'}}
             value={namedTask}
             onChange={(e) => setNamedTask(e.target.value)}
+            spellCheck={false}
           ></Input>
           <Spacer h={"1rem"} />
           <Button

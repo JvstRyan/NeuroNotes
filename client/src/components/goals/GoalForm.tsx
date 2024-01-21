@@ -39,6 +39,7 @@ const GoalForm = () => {
             w={{base: '24rem', sm:  '28rem', md: '35rem'}}
             value={namedGoal}
             onChange={(e) => setNamedGoal(e.target.value)}
+            spellCheck={false}
           ></Input>
           <Spacer h={"1rem"} />
           <Button _active={{transform: 'scale(0.98)', bg: 'white'}} _hover={{bg: 'white'}} variant={'outline'} border={'2px solid black'} w={{base: '24rem', sm:  '28rem', md: '35rem'}} h={"3rem"} type="submit">

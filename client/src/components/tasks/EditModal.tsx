@@ -57,6 +57,7 @@ function EditModal({ task, _id }: Props) {
                 onChange={(e) => setUpdatedTask(e.target.value)}
                 placeholder={task}
                 focusBorderColor="black"
+                spellCheck={false}
               />
             </FormControl>
           </ModalBody>
