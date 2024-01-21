@@ -1,11 +1,14 @@
 import { Box, Button, Flex, FormControl, Input, Spacer, Text, Image, useBreakpointValue } from "@chakra-ui/react";
+import { useState } from "react";
+import SignupForm from "./SignupForm";
 
 const LoginForm = () => {
 const isMobile = useBreakpointValue({ base: true, md: false });
+const [loginForm, setLoginForm] = useState(true)
 
   return (
-    <Flex>
-      <Box width={["100%", "100%", "50%", "30%"]} p={5}>
+    <Flex justify={'center'}>
+     { loginForm && <Box width={["100%", "100%", "50%", "30%"]} p={5}>
         <Flex direction={'column'} justify={'center'} align={'center'}>
         <Flex mt={'1rem'} justify={"center"} align={"center"}>
           <Image boxSize={'8rem'} src='/NeuroNotes.png' draggable={false} />
@@ -28,6 +31,7 @@ const isMobile = useBreakpointValue({ base: true, md: false });
             color={"default.200"}
             variant={"outline"}
             _hover={{ backgroundColor: "default.200", color: "white" }}
+            onClick={() => setLoginForm(false)}
           >
             Signup
           </Button>
@@ -65,8 +69,8 @@ const isMobile = useBreakpointValue({ base: true, md: false });
           </FormControl>
         </Flex>
         </Flex>
-      </Box>
-      
+      </Box> }
+      {!loginForm && <SignupForm onClick={() => setLoginForm(true)} />}
       {!isMobile && <Box
         position="relative"
         width={["100%", "100%", "50%", "70%"]}
