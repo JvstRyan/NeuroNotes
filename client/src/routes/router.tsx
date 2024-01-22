@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import LoginForm from "../components/login/LoginForm";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <App />
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    )
   },
 ]);
