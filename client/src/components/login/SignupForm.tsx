@@ -16,7 +16,7 @@ interface Props {
 const SignupForm = ({ onClick }: Props) => {
   return (
     <>
-      <Box justifyItems={"center"} width={["100%", "100%", "50%", "30%"]} p={5}>
+      <Box width={["100%", "100%", "50%", "30%"]} p={5}>
         <Flex direction={"column"} justify={"center"} align={"center"}>
           <Flex mt={"1rem"} justify={"center"} align={"center"}>
             <Image boxSize={"8rem"} src="/NeuroNotes.png" draggable={false} />
@@ -44,13 +44,13 @@ const SignupForm = ({ onClick }: Props) => {
               Signup
             </Button>
           </Flex>
-          <Flex
-            mt={"2rem"}
-            direction={"column"}
-            justify={"center"}
-            align={"center"}
-          >
-            <FormControl>
+          <FormControl>
+            <Flex
+              justify={"center"}
+              align={"center"}
+              mt={"2rem"}
+              direction={"column"}
+            >
               <Input
                 variant={"flushed"}
                 placeholder="Full name"
@@ -61,7 +61,7 @@ const SignupForm = ({ onClick }: Props) => {
                 w={"26rem"}
               ></Input>
               <Input
-                mt={"1rem"}
+                mt={'1rem'}
                 variant={"flushed"}
                 placeholder="Email Address"
                 required
@@ -70,8 +70,8 @@ const SignupForm = ({ onClick }: Props) => {
                 h={"3rem"}
                 w={"26rem"}
               ></Input>
-              <Spacer h={"1rem"} />
               <Input
+                mt={'1rem'}
                 variant={"flushed"}
                 placeholder="Password"
                 required
@@ -80,29 +80,29 @@ const SignupForm = ({ onClick }: Props) => {
                 h={"3rem"}
                 w={"26rem"}
               ></Input>
-              <Flex direction={"column"} justify={"center"} align={"center"}>
-                <Button
-                  _hover={{ backgroundColor: "default.500" }}
-                  type="button"
-                  onSubmit={() => console.log("clicked")}
-                  mt={"3rem"}
-                  w={"26rem"}
-                  color={"white"}
-                  fontSize={"20px"}
-                  h={"3rem"}
-                  bg={"default.200"}
-                >
-                  Signup
-                </Button>
-                <Text mt={"2rem"}>
-                  Already have an account?{" "}
-                  <b>
-                    <u>Login now</u>
-                  </b>
-                </Text>
-              </Flex>
-            </FormControl>
-          </Flex>
+            </Flex>
+            <Flex direction={"column"} justify={"center"} align={"center"}>
+              <Button
+                _hover={{ backgroundColor: "default.500" }}
+                type="button"
+                onSubmit={() => console.log("clicked")}
+                mt={"3rem"}
+                w={"26rem"}
+                color={"white"}
+                fontSize={"20px"}
+                h={"3rem"}
+                bg={"default.200"}
+              >
+                Signup
+              </Button>
+              <Text mt={"2rem"}>
+                Already have an account?{" "}
+                <b>
+                  <u>Login now</u>
+                </b>
+              </Text>
+            </Flex>
+          </FormControl>
         </Flex>
       </Box>
     </>
