@@ -1,5 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
 const Goal = require('../models/goalModal')
+const ErrorHandler = require("../errors/error");
 
 const getAllGoals = expressAsyncHandler( async(req, res) => {
     const goal = await Goal.find({})
@@ -10,7 +11,7 @@ const getSingleGoal = expressAsyncHandler(async (req, res) => {
     const {id: goalID} = req.params
     const goal = await Goal.findOne({_id: goalID})
     if (!goal) {
-        res.status(500).json({msg: `There is no goal with id: ${goalID}`})
+        throw new ErrorHandler(404, `No goal with id: ${goalID}, could be found`)
     }
     res.status(201).json({goal})
 })
@@ -27,7 +28,7 @@ const updateGoal = expressAsyncHandler(async (req, res) => {
     })
 
     if (!goal) {
-        res.status(500).json({msg: `There is no goal with id: ${goalID}`})
+        throw new ErrorHandler(404, `No goal with id: ${goalID}, could be found`)
     }
     res.status(201).json({goal})
 })
@@ -36,7 +37,7 @@ const deleteGoal = expressAsyncHandler(async (req, res) => {
     const {id: goalID} = req.params
     const goal = await Goal.findOneAndDelete({_id: goalID})
     if(!goal) {
-        res.status(500).json({msg: `There is no goal with id: ${goalID}`})
+        throw new ErrorHandler(404, `No goal with id: ${goalID}, could be found`)
     }
     res.status(201).json({goal})
 })

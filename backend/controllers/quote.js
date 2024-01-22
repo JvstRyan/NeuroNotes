@@ -1,5 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
-const Quote = require('../models/quoteModal')
+const Quote = require('../models/quoteModal');
+const ErrorHandler = require("../errors/error");
 
 //Get Quotes
 
@@ -10,6 +11,10 @@ const getAllQuotes = expressAsyncHandler(async(req, res) => {
         quote = await Quote.find({ favourite: favourite})
     } else {
         quote = await Quote.find();
+    }
+    
+    if (!quote) {
+        throw new ErrorHandler(404, `No quotes could be found`)
     }
     res.status(201).json({quote})
 })
@@ -29,7 +34,7 @@ const updateQuote = expressAsyncHandler(async(req, res) => {
         new:true, runValidators:true
     })
     if(!quote) {
-        res.status(500).json({msg: 'Quote could not be updated'})
+       throw new ErrorHandler(404, `No quote with id ${quoteID} was found`)
     }
     res.status(201).json({quote})
 })
@@ -41,7 +46,7 @@ const deleteQuote = expressAsyncHandler(async(req, res) => {
     const quote = await Quote.findOneAndDelete({_id: quoteID})
 
     if (!quote) {
-        res.status(500).json({msg: `Quote with id: ${quoteID}, could not be deleted`})
+     throw new ErrorHandler(404, `No quote with id ${quoteID} was found`)
     }
     res.status(201).json({quote})
 })

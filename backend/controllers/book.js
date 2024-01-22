@@ -23,7 +23,7 @@ const updateBook = expressAsyncHandler(async(req, res) => {
         new: true, runValidators:true
     })
     if(!book) {
-        res.status(500).json({msg: `Could not update book with id: ${bookID}`})
+        throw new ErrorHandler(404, `Book with id: ${bookID}, could not be found`)
     }
     res.status(200).json({book})
 })
@@ -38,7 +38,7 @@ const deleteBook = expressAsyncHandler(async(req, res) => {
     const book = await Book.findOneAndDelete({_id: bookID})
 
     if (!book) {
-        res.status(500).json({msg: `Book with id: ${bookID}, could not be deleted`})
+        throw new ErrorHandler(404, `Book with id: ${bookID}, could not be found`)
     }
 
     res.status(201).json({book})

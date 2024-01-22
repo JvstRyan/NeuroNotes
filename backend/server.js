@@ -11,6 +11,7 @@ const quoteRoutes = require("./routes/quoteRouter");
 const bookRoutes = require("./routes/bookRouter");
 const userRoutes = require('./routes/userRouter')
 const cors = require("cors");
+const handleError = require("./middleware/errorHandler");
 
 connectDB();
 
@@ -25,6 +26,8 @@ app.use("/api/folders", folderRoutes);
 app.use("/api/quotes", quoteRoutes);
 app.use("/api/books", bookRoutes);
 app.use('/api/users', userRoutes)
+
+app.use(handleError)
 
 app.get("/", (req, res) => {
   res.status(200).send("Server is running");

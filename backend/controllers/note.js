@@ -1,6 +1,7 @@
 const expressAsyncHandler = require("express-async-handler");
 const Folder = require("../models/FolderModal");
-const Note =  require('../models/NotesModal')
+const Note =  require('../models/NotesModal');
+const ErrorHandler = require("../errors/error");
 
 //CRUD = Create, Read, Update and Delete
 
@@ -15,7 +16,7 @@ const singleNote = expressAsyncHandler(async(req,res) => {
     const note = await Note.findOne({_id: noteID})
 
     if(!note) {
-        res.status(500).json({msg: `Note id has not been found`})
+        throw new ErrorHandler(404, `No note with id: ${noteID}, could be found`)
     }
     res.status(201).json({note})
 
@@ -26,7 +27,7 @@ const createNote = expressAsyncHandler( async (req, res) => {
     const folder = await Folder.findById(folderId);
 
     if(!folder) {
-        res.status(500).json({msg: 'There was no folder found'})
+        throw new ErrorHandler(404, `No folder found`)
     }
 
     const note = new Note({title, description, content, folder: folderId})
@@ -41,7 +42,7 @@ const updateNote = expressAsyncHandler(async(req, res) => {
     })
 
     if(!note) {
-        res.status(500).json({msg: `Note id has not been found`})
+        throw new ErrorHandler(404, `No note with id: ${noteID}, could be found`)
     }
     res.status(201).json({note})
 })
@@ -51,7 +52,7 @@ const deleteNote = expressAsyncHandler(async(req, res) => {
    const note = await Note.findOneAndDelete({_id: noteID})
    
    if(!note) {
-    res.status(500).json({msg: `Note id has not been found`})
+    throw new ErrorHandler(404, `No note with id: ${noteID}, could be found`)
    }
    res.status(201).json({note})
 })
