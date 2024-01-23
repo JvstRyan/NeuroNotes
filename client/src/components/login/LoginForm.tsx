@@ -30,6 +30,7 @@ const LoginForm = () => {
     onSuccess: () => {
       toast({
         title: "Succesfully logged in",
+        position: 'top',
         status: "success",
         duration: 3000,
         isClosable: true,
@@ -40,6 +41,7 @@ const LoginForm = () => {
     onError: () => {
       toast({
         title: "An error occured",
+        position: 'top',
         description: "Please provide valid credentials",
         status: "error",
         duration: 4000,

@@ -6,8 +6,6 @@ import {
   Box,
   Text,
   Image,
-  Alert,
-  AlertIcon,
   useToast,
   Spinner,
 } from "@chakra-ui/react";
@@ -32,6 +30,7 @@ const SignupForm = ({ onClick }: Props) => {
 
       toast({
         title: "Account created",
+        position: 'top',
         description:
           "We have created an account for you, please login with your credentials",
         status: "success",
