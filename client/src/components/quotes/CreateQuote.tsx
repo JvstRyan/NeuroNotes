@@ -45,11 +45,11 @@ const CreateQuote = () => {
             <FormControl>
             <Flex mt={"10px"} mb={'10px'} direction={"column"}>
                 <FormLabel>Quote:</FormLabel>
-                <Textarea
+                <Input
                   focusBorderColor="black"
                   spellCheck={false}
                   onChange={(e) => setQuoteName(e.target.value)}
-                ></Textarea>
+                ></Input>
               </Flex>
               <FormLabel>Person:</FormLabel>
               <Input
