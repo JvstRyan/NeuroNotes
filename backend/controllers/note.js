@@ -1,6 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
 const Folder = require("../models/folderModal");
-const Note =  require('../models/NotesModal');
+const Note =  require('../models/notesModal');
 const ErrorHandler = require("../errors/error");
 
 //CRUD = Create, Read, Update and Delete
