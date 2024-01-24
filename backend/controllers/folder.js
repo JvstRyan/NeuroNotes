@@ -1,6 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
-const Folder = require("../models/FolderModal");
 const ErrorHandler = require("../errors/error");
+const Folder = require("../models/folderModal");
 
 //CRUD = Create, Read, Update and Delete
 //Get all Folders

@@ -1,5 +1,5 @@
 const expressAsyncHandler = require("express-async-handler");
-const Folder = require("../models/FolderModal");
+const Folder = require("../models/folderModal");
 const Note =  require('../models/NotesModal');
 const ErrorHandler = require("../errors/error");
 
