@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "./setauth";
 
 interface FolderData {
     _id: string;
@@ -10,7 +10,7 @@ interface FolderData {
 
     const fetchFolders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/folders");
+        const response = await api.get("/folders");
         return response.data.folders
       } catch (error) {
         console.error("failed to fetch folders", error);
@@ -28,7 +28,7 @@ interface FolderData {
 // Create folder
  export const createFolder = async (body: {name: string, description: string}) => {
     try {
-      await axios.post(`http://localhost:5000/api/folders/`, body)
+      await api.post(`/folders/`, body)
     } catch(error) {
       console.error('Folder could not be created', error)
     }
@@ -37,7 +37,7 @@ interface FolderData {
 // Update folder
 export const patchFolder = async ({id, body}: {id: string, body: {name: string, description: string}}) => {
     try {
-        await axios.patch(`http://localhost:5000/api/folders/${id}`, body)
+        await api.patch(`/folders/${id}`, body)
       }
      catch(error) {
       console.error("Updating folder went wrong", error);
@@ -47,7 +47,7 @@ export const patchFolder = async ({id, body}: {id: string, body: {name: string, 
 // Delete folder
 export const deleteFolder = async (id: string) => {
       try {
-        await axios.delete(`http://localhost:5000/api/folders/${id}`);
+        await api.delete(`/folders/${id}`);
       } catch(error) {
           console.error('Folder could not be deleted', error)
       }

@@ -3,7 +3,7 @@ const Goal = require('../models/goalModal')
 const ErrorHandler = require("../errors/error");
 
 const getAllGoals = expressAsyncHandler( async(req, res) => {
-    const goal = await Goal.find({})
+    const goal = await Goal.find({ userId: req.user._id })
     res.status(201).json({goal})
 })
 
@@ -17,7 +17,7 @@ const getSingleGoal = expressAsyncHandler(async (req, res) => {
 })
 
 const createGoal = expressAsyncHandler(async (req, res) => {
-   const goal = await Goal.create(req.body)
+   const goal = await Goal.create({...req.body, userId: req.user._id})
    res.status(201).json({goal})
 })
 

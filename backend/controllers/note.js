@@ -7,7 +7,7 @@ const ErrorHandler = require("../errors/error");
 
 const allNotes = expressAsyncHandler(async(req,res) => {
     const {folderId} = req.query
-    const note = await Note.find({folder: folderId})
+    const note = await Note.find({folder: folderId, userId: req.user._id})
     res.status(201).json({note})
 })
 
@@ -24,7 +24,7 @@ const singleNote = expressAsyncHandler(async(req,res) => {
 
 const createNote = expressAsyncHandler( async (req, res) => {
     const {title, description, content, folderId} = req.body
-    const folder = await Folder.findById(folderId);
+    const folder = await Folder.findById({...req.body, userId: req.user._id});
 
     if(!folder) {
         throw new ErrorHandler(404, `No folder found`)

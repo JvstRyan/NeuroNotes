@@ -1,9 +1,11 @@
-import axios from "axios"
+import { api, setAuthToken } from "./setauth"
+
+
 
 
 export const createUser = async (body: {fullname: string, email: string, password: string}) => {
     try {
-    const response = await axios.post('http://localhost:5000/api/users/signup', body)
+    const response = await api.post('/users/signup', body)
     return response.data
     } catch(error) {
     console.error('Could not create user', error)
@@ -14,10 +16,9 @@ export const createUser = async (body: {fullname: string, email: string, passwor
 
 export const loginUser = async (body: {email: string, password: string}) => {
     try {
-        const response = await axios.post('http://localhost:5000/api/users/login', body)
-
+        const response = await api.post('/users/login', body)
         localStorage.setItem('token', response.data.token)
-
+        setAuthToken(response.data.token)
         return response.data
     } catch(error) {
         console.error('Could not login', error)

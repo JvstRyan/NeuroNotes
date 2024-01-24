@@ -11,13 +11,16 @@ import TaskForm from "./components/tasks/TaskForm";
 import TaskItem from "./components/tasks/TaskItem";
 import QuoteForm from "./components/quotes/QuoteForm";
 import BookForm from "./components/books/BookForm";
-import BookItem from "./components/books/BookItem";
+import { setAuthToken } from "./api/setauth";
 const App = () => {
   const { data: tasks } = useFetchTasks();
   const { data: goals } = useFetchGoals();
   const { data: folders } = useFetchFolders();
 
-
+  const token = localStorage.getItem('token');
+  if (token) {
+    setAuthToken(token);
+  }
   
 
   return (

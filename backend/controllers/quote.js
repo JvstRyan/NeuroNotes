@@ -8,9 +8,9 @@ const getAllQuotes = expressAsyncHandler(async(req, res) => {
     let quote;
     if(req.query.favourite) {
         const favourite = req.query.favourite === 'true'
-        quote = await Quote.find({ favourite: favourite})
+        quote = await Quote.find({ favourite: favourite, userId: req.user._id})
     } else {
-        quote = await Quote.find();
+        quote = await Quote.find({userId: req.user._id});
     }
     
     if (!quote) {
@@ -22,7 +22,7 @@ const getAllQuotes = expressAsyncHandler(async(req, res) => {
 // Create Quote
 
 const createQuote = expressAsyncHandler(async(req, res) => {
-    const quote = await Quote.create(req.body)
+    const quote = await Quote.create({...req.body, userId: req.user._id})
     res.status(201).json({quote})
 })
 

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "./setauth";
+
 
 export interface TaskData {
     _id: string;
@@ -9,7 +10,7 @@ export interface TaskData {
 //Get all tasks
 const requestTasks = async () => {
     try {
-     const response = await axios.get("http://localhost:5000/api/tasks");
+     const response = await api.get("/tasks");
      return response.data.tasks
     } catch (error) {
       console.error("Failed to fetch tasks", error);
@@ -25,7 +26,7 @@ export const useFetchTasks = () =>
 //Create task
 export const postTask = async (newTask: { name: string }) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/tasks", newTask);
+    const response = await api.post("http://localhost:5000/api/tasks", newTask);
     return response.data.tasks;
   } catch(error) {
     console.error('Failed to create task', error)
@@ -36,7 +37,7 @@ export const postTask = async (newTask: { name: string }) => {
 //Delete task
 export const deleteTask = async (id: string) => {
   try {
-    await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+    await api.delete(`/tasks/${id}`);
   } catch (error) {
     console.error("Failed to delete task", error);
     throw error;
@@ -47,7 +48,7 @@ export const deleteTask = async (id: string) => {
 //Update task 
 export const patchTask = async ({ id, body }: { id: string, body: {name: string} }) => {
   try {
-   const response = await axios.patch(`http://localhost:5000/api/tasks/${id}`, body )
+   const response = await api.patch(`/tasks/${id}`, body )
    return response.data.tasks
   } catch(error) {
   console.error(error)

@@ -9,9 +9,9 @@ const getAllBooks = expressAsyncHandler(async(req, res) => {
     let books;
 
     if (reading !== undefined) {
-        books = await Book.find({ reading: reading === 'true' });
+        books = await Book.find({ reading: reading === 'true', userId: req.user._id });
     } else {
-        books = await Book.find({});
+        books = await Book.find({ userId: req.user._id });
     }
 
     res.status(200).json({books});
@@ -29,7 +29,7 @@ const updateBook = expressAsyncHandler(async(req, res) => {
 })
 
 const createBook = expressAsyncHandler(async(req, res) => {
-    const book = await Book.create(req.body)
+    const book = await Book.create({...req.body, userId: req.user._id})
     res.status(200).json({book})
 })
 

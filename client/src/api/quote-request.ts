@@ -1,4 +1,5 @@
-import axios from "axios"
+
+import { api } from "./setauth"
 
 export interface Quote {
     name: string
@@ -12,7 +13,7 @@ export interface Quote {
 
 export const fetchQuotes = async (statement: string) => {
     try {
-    const response = await axios.get(`http://localhost:5000/api/quotes?favourite=${statement}`)
+    const response = await api.get(`/quotes?favourite=${statement}`)
     return response.data.quote
     } catch(error) {
       console.error('Could not fetch quotes', error)
@@ -24,7 +25,7 @@ export const fetchQuotes = async (statement: string) => {
 
 export const updateQuotes = async ({id, body}: {id: string, body: {name: string, person: string, favourite: boolean, note: string}}) => {
     try {
-    const response = await axios.patch(`http://localhost:5000/api/quotes/${id}`, body)
+    const response = await api.patch(`/quotes/${id}`, body)
     return response.data.quote
     } catch(error) {
     console.error('Quote could not be updated', error)
@@ -36,7 +37,7 @@ export const updateQuotes = async ({id, body}: {id: string, body: {name: string,
 
 export const createQuote = async (body: {name: string, person: string, favourite: boolean, note: string}) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/quotes`, body)
+      const response = await api.post(`/quotes`, body)
       return response.data.quote
     } catch(error) {
         console.error('Could not create quote', error)
@@ -46,7 +47,7 @@ export const createQuote = async (body: {name: string, person: string, favourite
 //Delete quote
 export const deleteQuote = async (_id: string) => {
     try {
-        await axios.delete(`http://localhost:5000/api/quotes/${_id}`)
+        await api.delete(`/quotes/${_id}`)
       } catch(error) {
         console.error('Could not delete quote', error)
       }

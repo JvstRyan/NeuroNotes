@@ -6,7 +6,7 @@ const ErrorHandler = require("../errors/error");
 //Get all Folders
 
 const getAllFolders = expressAsyncHandler(async (req, res) => {
-  const folders = await Folder.find({});
+  const folders = await Folder.find({ userId: req.user._id });
   res.status(201).json({ folders });
 });
 
@@ -23,7 +23,7 @@ const findSingleFolder = expressAsyncHandler(async (req, res) => {
 
 //Create Folder
 const createFolder = expressAsyncHandler(async (req, res) => {
-  const folder = await Folder.create(req.body);
+  const folder = await Folder.create({...req.body, userId: req.user._id});
   res.status(201).json({ folder });
 });
 

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "./setauth";
 
 interface GoalData {
     _id: string;
@@ -9,7 +9,7 @@ interface GoalData {
 // Get all goals
 const requestGoals = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/goals");
+        const response = await api.get("/goals");
         return response.data.goal
       } catch (error) {
         console.error("failed to fetch goals", error);
@@ -25,7 +25,7 @@ export const useFetchGoals = () =>
 //Create goal
 export const postGoals = async (newGoal: {goal: string}) => {
     try {
-    await axios.post("http://localhost:5000/api/goals", newGoal  )
+    await api.post("/goals", newGoal  )
     } catch(error) {
     console.error('Create task failed', error)
     }
@@ -35,7 +35,7 @@ export const postGoals = async (newGoal: {goal: string}) => {
 //Update goal
 export const patchGoal = async ({id, body}: {id: string, body: {goal: string}}) => {
     try {
-    const response = await axios.patch(`http://localhost:5000/api/goals/${id}`, body)
+    const response = await api.patch(`/goals/${id}`, body)
      return response.data.goal
     } catch(error) {
     console.error(error)
@@ -46,7 +46,7 @@ export const patchGoal = async ({id, body}: {id: string, body: {goal: string}}) 
 //Delete goal
 export const deleteGoal = async (_id: string) => {
         try {
-        await axios.delete(`http://localhost:5000/api/goals/${_id}`)
+        await api.delete(`/goals/${_id}`)
         } catch(error) {
             console.error(`${error}`)
         }

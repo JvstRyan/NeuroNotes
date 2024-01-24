@@ -7,6 +7,11 @@ const quoteSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     person: {
         type: String,
         maxlength: [25, "name cannot be more than 25 charachters"]

@@ -1,6 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import { api } from "./setauth"
 
 export interface Books {
     _id: string
@@ -15,10 +16,10 @@ export interface Books {
 export const fetchAllBooks = async (statement: boolean | undefined) => {
     try {
     const url = statement !== undefined 
-    ? `http://localhost:5000/api/books?reading=${statement}`
-    : `http://localhost:5000/api/books`
+    ? `/books?reading=${statement}`
+    : `/books`
 
-    const response = await axios.get(url)
+    const response = await api.get(url)
     return response.data.books
     } catch(error) {
     console.error('Failed to fetch books', error)
@@ -34,7 +35,7 @@ export const useFetchBooks = (statement: boolean | undefined) => useQuery<Books[
   //Update Books
 export const updateBooks = async ({id, body}: {id: string, body: {name: string, author: string, totalpages: string, currentpage: string, notes: string, reading: boolean}}) => {
     try {
-    const response = await axios.patch(`http://localhost:5000/api/books/${id}`, body)
+    const response = await api.patch(`/books/${id}`, body)
     return response.data.books
     } catch(error) {
         console.error('Failed to update book', error)
@@ -45,7 +46,7 @@ export const updateBooks = async ({id, body}: {id: string, body: {name: string, 
 //Create Book
 export const createBooks = async (body: {name: string, author: string, totalpages: string, currentpage: string, notes: string, reading: boolean}) => {
     try {
-    await axios.post(`http://localhost:5000/api/books/`, body)
+    await api.post(`/books/`, body)
     } catch(error) {
     console.error('Failed to create book', error)
     }
@@ -56,7 +57,7 @@ export const createBooks = async (body: {name: string, author: string, totalpage
 
 export const deleteBooks = async (id: string) => {
     try {
-    await axios.delete(`http://localhost:5000/api/books/${id}`)
+    await api.delete(`/books/${id}`)
     } catch(error) {
     console.error('Failed to create book', error)
     }
