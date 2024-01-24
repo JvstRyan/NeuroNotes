@@ -11,7 +11,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { RxCross2 } from "react-icons/rx";
 import { deleteBooks } from "../../api/book-request";
 
 interface Props {

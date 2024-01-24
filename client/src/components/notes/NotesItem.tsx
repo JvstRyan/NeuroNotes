@@ -13,7 +13,6 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
-  Icon,
   Input,
   Text,
   Textarea,
@@ -22,7 +21,6 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { FaTrash } from "react-icons/fa6";
 import { patchNotes } from "../../api/note-requests";
 import DeleteNotes from "./DeleteNotes";
 

@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaPlus, FaSquareCheck } from "react-icons/fa6";
+import { FaSquareCheck } from "react-icons/fa6";
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa6";
 import BookItem from "./BookItem";
