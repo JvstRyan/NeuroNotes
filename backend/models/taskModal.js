@@ -7,6 +7,11 @@ const taskSchema = mongoose.Schema(
         required: [true, 'must provide name'],
         trim: true,
         maxlength: [25, "name cannot be more than 20 charachters"]
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
 })
 

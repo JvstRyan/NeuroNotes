@@ -5,9 +5,7 @@ const ErrorHandler = require("../errors/error");
 
 const getAllTasks = expressAsyncHandler(async (req, res) => {
 
-
-
- const tasks = await Task.find({})
+ const tasks = await Task.find({ userId: req.user._id })
   if (!tasks) {
     throw new ErrorHandler(404, 'No tasks found')
   }
@@ -25,7 +23,7 @@ const getSingleTask = expressAsyncHandler(async (req, res) => {
 });
 
 const createTask = expressAsyncHandler(async (req, res) => {
-  const task = await Task.create(req.body)
+  const task = await Task.create({...req.body, userId: req.user._id})
   res.status(201).json({ task })
 });
 
