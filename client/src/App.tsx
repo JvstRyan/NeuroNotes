@@ -17,11 +17,10 @@ const App = () => {
   const { data: goals } = useFetchGoals();
   const { data: folders } = useFetchFolders();
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
     setAuthToken(token);
   }
-  
 
   return (
     <>
@@ -87,21 +86,20 @@ const App = () => {
           <AddFolder />
         </SimpleGrid>
         <SimpleGrid
-          placeContent={'center'}
+          placeContent={"center"}
           columns={[1]}
-          minW={{ sm: '', md: '75rem'}}
+          minW={{ sm: "", md: "75rem" }}
         >
           <QuoteForm />
         </SimpleGrid>
         <SimpleGrid
-          placeContent={'center'}
+          placeContent={"center"}
           columns={[1]}
-          minW={{ sm: '', md: '75rem'}}
+          minW={{ sm: "", md: "75rem" }}
         >
           <BookForm />
         </SimpleGrid>
       </Flex>
-      
     </>
   );
 };
