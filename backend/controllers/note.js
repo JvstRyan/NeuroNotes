@@ -23,13 +23,19 @@ const singleNote = expressAsyncHandler(async (req, res) => {
 
 const createNote = expressAsyncHandler(async (req, res) => {
   const { title, description, content, folderId } = req.body;
-  const folder = await Folder.findOne({ ...req.body, userId: req.user._id });
+  const folder = await Folder.findOne({ _id: folderId, userId: req.user._id });
 
   if (!folder) {
     throw new ErrorHandler(404, `No folder found`);
   }
 
-  const note = new Note({ title, description, content, folder: folderId });
+  const note = new Note({
+    title,
+    description,
+    content,
+    folder: folderId,
+    userId: req.user._id,
+  });
   const createdNote = await note.save();
   res.status(201).json({ createdNote });
 });
