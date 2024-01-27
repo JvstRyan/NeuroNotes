@@ -67,16 +67,16 @@ const SignupForm = ({ onClick }: Props) => {
       <Box width={["100%", "100%", "50%", "30%"]} p={5}>
         <Flex direction={"column"} justify={"center"} align={"center"}>
           <Flex
-            mt={"1rem"}
             justify={"center"}
             direction={"column"}
             align={"center"}
+            mt={{base: '2rem', md: '1rem'}}
           >
            {mutation.status === 'pending' ? '' : <Image boxSize={"8rem"} src="/NeuroNotes.png" draggable={false} />}
            {mutation.status === 'pending' ? <Spinner /> : ''}
             {/* {errorMessage && <Text mt={'1rem'} color={'red'} >{errorMessage}</Text>} */}
           </Flex>
-          <Flex justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
+          <Flex w={{base: '20rem', md: '26rem'}} justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
             <Button
               size={"lg"}
               w={"13rem"}
@@ -115,7 +115,7 @@ const SignupForm = ({ onClick }: Props) => {
                 type="text"
                 focusBorderColor="black"
                 h={"3rem"}
-                w={"26rem"}
+                w={{base: '20rem', md: '26rem'}}
               ></Input>
               <Input
                 mt={"1rem"}
@@ -126,7 +126,7 @@ const SignupForm = ({ onClick }: Props) => {
                 type="email"
                 focusBorderColor="black"
                 h={"3rem"}
-                w={"26rem"}
+                w={{base: '20rem', md: '26rem'}}
               ></Input>
               <Input
                 mt={"1rem"}
@@ -137,7 +137,7 @@ const SignupForm = ({ onClick }: Props) => {
                 type="password"
                 focusBorderColor="black"
                 h={"3rem"}
-                w={"26rem"}
+                w={{base: '20rem', md: '26rem'}}
               ></Input>
             </Flex>
             <Flex direction={"column"} justify={"center"} align={"center"}>
@@ -146,7 +146,7 @@ const SignupForm = ({ onClick }: Props) => {
                 type="button"
                 onSubmit={() => console.log("clicked")}
                 mt={"3rem"}
-                w={"26rem"}
+                w={{base: '20rem', md: '26rem'}}
                 color={"white"}
                 fontSize={"20px"}
                 h={"3rem"}

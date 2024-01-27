@@ -59,11 +59,11 @@ const LoginForm = () => {
       {loginForm && (
         <Box width={["100%", "100%", "50%", "30%"]} p={5}>
           <Flex direction={"column"} justify={"center"} align={"center"}>
-            <Flex mt={"1rem"} justify={"center"} align={"center"}>
+            <Flex mt={{base: '2rem', md: '1rem'}} justify={"center"} align={"center"}>
             {mutation.status === 'pending' ? '' : <Image boxSize={"8rem"} src="/NeuroNotes.png" draggable={false} />}
             {mutation.status === 'pending' ? <Spinner /> : ''}
             </Flex>
-            <Flex justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
+            <Flex w={{base: '20rem', md: '26rem'}} justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
               <Button
                 size={"lg"}
                 border={'none'}
@@ -90,6 +90,7 @@ const LoginForm = () => {
               </Button>
             </Flex>
             <Flex
+              w={{base: '20rem', md: '26rem'}}
               mt={"2rem"}
               direction={"column"}
               justify={"center"}
@@ -104,7 +105,7 @@ const LoginForm = () => {
                   type="email"
                   focusBorderColor="black"
                   h={"3rem"}
-                  w={"26rem"}
+                  w={{base: '20rem', md: '26rem'}}
                 ></Input>
                 <Spacer h={"1rem"} />
                 <Input
@@ -115,7 +116,7 @@ const LoginForm = () => {
                   type="password"
                   focusBorderColor="black"
                   h={"3rem"}
-                  w={"26rem"}
+                  w={{base: '20rem', md: '26rem'}}
                 ></Input>
                 <Flex direction={"column"} justify={"center"} align={"center"}>
                   <Button
