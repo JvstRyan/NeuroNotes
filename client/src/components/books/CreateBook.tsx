@@ -49,7 +49,7 @@ const CreateBook = () => {
         <Spacer w={"3px"} />
         New Book
       </Button>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal  size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create Book</ModalHeader>

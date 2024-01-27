@@ -28,9 +28,9 @@ const AddFolder = () => {
       <Card
         _hover={{ backgroundColor: "#F0F0F0" }}
         cursor={"pointer"}
-        w={{base: '450px', md: "385px"}}
+        w={{base: '350px', md: "385px"}}
         h={"xs"}
-        mb={"1rem"}
+        mb={{base: "2rem", md: '0px'}}
         borderRadius={"10px"}
         placeContent={"center"}
         alignItems={"center"}
@@ -39,7 +39,7 @@ const AddFolder = () => {
       >
         <GoPlus size={60} color={"default.200"} />
       </Card>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create Folder</ModalHeader>

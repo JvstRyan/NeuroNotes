@@ -33,8 +33,7 @@ interface Notes {
 const NotesModal = ({ name, description, folderId }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-
- const { data: notes } = useQuery<Notes[]>({
+  const { data: notes } = useQuery<Notes[]>({
     queryKey: ["notes", folderId],
     queryFn: () => fetchNotes(folderId),
   });
@@ -57,13 +56,18 @@ const NotesModal = ({ name, description, folderId }: Props) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader fontSize={"3rem"}>{name}</ModalHeader>
-          <Text ml={"2rem"} maxW={"30%"}>
+          <Text ml={"2rem"} maxW={{base: "50%", md: '30%'}}>
             {description}
           </Text>
           <Divider mt={"2rem"} />
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid mt="2rem" columns={4} spacing={5}>
+            <SimpleGrid
+              mt="2rem"
+              placeItems={'center'}
+              rowGap={'6'}
+              columns={{ base: 1, md: 4 }}
+            >
               {notes?.map((item) => (
                 <NotesItem
                   key={item._id}

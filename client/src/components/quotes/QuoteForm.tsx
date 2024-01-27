@@ -35,12 +35,12 @@ const QuoteForm = () => {
         fontSize={"26px"}
         color="default.500"
         mt={"1rem"}
-        ml={{sm: '1rem', md: '0rem'}}
+        ml={{base: '2rem', md: '0rem'}}
       >
         Quotes
       </Text>
-      <Flex mt={'5px'} justify={"space-between"} align={"center"}>
-        <Flex>
+      <Flex ml={{base: '1rem', md: '0px'}} mr={{base: '1rem', md: '0px'}} mt={'5px'} justify={"space-between"} align={"center"}>
+        <Flex >
           <Flex direction={'column'}>
             <Button
               fontSize={"16px"}
@@ -66,9 +66,7 @@ const QuoteForm = () => {
         </Flex>
        <CreateQuote />
       </Flex>
-      <Box w={'100%'}>
-      <Divider borderColor={"black"} w={'100%'} />
-      </Box>
+      <Divider borderColor={"black"} w={{base: '0px', md: '100%'}} />
       <Flex mt={"1rem"} w={'100%'} h={'100%'} direction={'column'}>
       {isLoading ? <Spinner /> : ''}
         {quotes?.map((item) => (

@@ -38,7 +38,7 @@ const AddNotes = ({foldId}: Props) => {
       <Card
         _hover={{ backgroundColor: "#F0F0F0" }}
         cursor={"pointer"}
-        minW={"xs"} 
+        w={{base: '350px'}}
         minH={"xs"}
         borderRadius={"10px"}
         placeContent={"center"}
@@ -48,7 +48,7 @@ const AddNotes = ({foldId}: Props) => {
       >
         <GoPlus size={60} color={"#5C5C5C"} />
       </Card>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create Note</ModalHeader>

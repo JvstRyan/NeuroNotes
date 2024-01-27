@@ -46,7 +46,7 @@ const DeleteBook = ({ id, author }: Props) => {
       >
         Remove Book
       </Button>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal  size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Delete Book</ModalHeader>

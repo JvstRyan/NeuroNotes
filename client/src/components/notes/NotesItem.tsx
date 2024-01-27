@@ -66,7 +66,7 @@ const NotesItem = ({
 
   return (
     <>
-      <Card minW={"xs"} minH={"xs"} borderRadius={"10px"}>
+      <Card  w={{base: '350px'}} minH={"xs"} borderRadius={"10px"}>
         <CardHeader>
           <Flex justify={"space-between"} align={"center"}>
             <Text size={"15px"} fontWeight={"600"} color={"#5C5C5C"}>

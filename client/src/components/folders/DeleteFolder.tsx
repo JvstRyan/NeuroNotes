@@ -46,7 +46,7 @@ const DeleteFolder = ({ id, title }: Props) => {
         onClick={onOpen}
         _hover={{ color: "default.500" }}
       />
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Delete Folder</ModalHeader>

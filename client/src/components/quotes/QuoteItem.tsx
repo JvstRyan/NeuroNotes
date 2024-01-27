@@ -68,7 +68,7 @@ const QuoteItem = ({ name: propName, person: propPerson, favourite: propFavourit
         align={"center"}
         w={"100%"}
       >
-        <Flex ml={{sm: '1rem', md: '0rem'}} align={"center"} gap={"5px"} maxWidth={{sm: '90%', md: '80%'}}>
+        <Flex ml={{base: '1.6rem', md: '0rem'}} align={"center"} gap={"5px"} maxWidth={{base: '90%', md: '80%'}}>
           <FaBookmark size={19} />
           <Text
             isTruncated

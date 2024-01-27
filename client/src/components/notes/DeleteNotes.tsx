@@ -47,7 +47,7 @@ const DeleteNotes = ({title, id}: Props) => {
         _hover={{ color: "#313131" }}
         onClick={onOpen}
       />
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Delete Folder</ModalHeader>

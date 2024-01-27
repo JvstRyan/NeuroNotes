@@ -97,7 +97,7 @@ const BookItem = ({
   return (
     <>
       <Card
-        w={{ base: "450px", md: "385px" }}
+        w={{base: '350px', md: '385px'}}
         h={"xs"}
         mb={"1rem"}
         borderRadius={"10px"}

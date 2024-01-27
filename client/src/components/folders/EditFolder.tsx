@@ -59,7 +59,7 @@ function EditFolder({ title, description: propDesc, _id }: Props) {
         boxSize={6}
         onClick={onOpen}
       />
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit Folder</ModalHeader>
