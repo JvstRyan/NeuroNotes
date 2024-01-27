@@ -66,11 +66,13 @@ const LoginForm = () => {
             <Flex justify={"center"} gap={"10px"} align={"center"} mt={"2rem"}>
               <Button
                 size={"lg"}
+                border={'none'}
+                variant={'outline'}
                 w={"13rem"}
                 borderRadius={"5px"}
-                bg={"default.200"}
-                color={"white"}
-                _hover={{ backgroundColor: "default.500" }}
+                bg={'black'}
+                color={'white'}
+                _hover={{backgroundColor: 'black'}}
               >
                 Login
               </Button>
@@ -78,9 +80,10 @@ const LoginForm = () => {
                 size={"lg"}
                 w={"13rem"}
                 borderRadius={"5px"}
-                color={"default.200"}
+                border={'2px solid'}
+                color={'black'}
                 variant={"outline"}
-                _hover={{ backgroundColor: "default.200", color: "white" }}
+                _hover={{ backgroundColor: "black", color: "white", border: 'none',  transform: 'scale(0.98)' }}
                 onClick={() => setLoginForm(false)}
               >
                 Signup
@@ -116,7 +119,7 @@ const LoginForm = () => {
                 ></Input>
                 <Flex direction={"column"} justify={"center"} align={"center"}>
                   <Button
-                    _hover={{ backgroundColor: "default.500" }}
+                    _hover={{ backgroundColor: "black", transform: 'scale(0.98)' }}
                     type="button"
                     onClick={postLogin}
                     mt={"3rem"}
@@ -124,7 +127,8 @@ const LoginForm = () => {
                     color={"white"}
                     fontSize={"20px"}
                     h={"3rem"}
-                    bg={"default.200"}
+                    bg={"black"}
+                   
                   >
                     Login
                   </Button>

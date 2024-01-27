@@ -1,5 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 
+
+
  export const theme = extendTheme({
     colors: {
         default: {
@@ -12,5 +14,6 @@ import { extendTheme } from '@chakra-ui/react'
             200: '#FFFFFF',
             500: '#FFFFFF'
         }
-    }
+    },
+   
   })

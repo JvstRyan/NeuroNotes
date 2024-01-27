@@ -44,6 +44,7 @@ const SignupForm = ({ onClick }: Props) => {
       toast({
         title: "An error occured",
         description: "Please provide valid credentials",
+        position: 'top',
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -80,9 +81,10 @@ const SignupForm = ({ onClick }: Props) => {
               size={"lg"}
               w={"13rem"}
               borderRadius={"5px"}
-              color={"default.200"}
+              color={"black"}
               variant={"outline"}
-              _hover={{ backgroundColor: "default.200", color: "white" }}
+              border={'2px solid'}
+              _hover={{ backgroundColor: "black", color: "white", border: 'none',  transform: 'scale(0.98)' }}
               onClick={onClick}
             >
               Login
@@ -91,9 +93,9 @@ const SignupForm = ({ onClick }: Props) => {
               size={"lg"}
               w={"13rem"}
               borderRadius={"5px"}
-              bg={"default.200"}
+              bg={"black"}
               color={"white"}
-              _hover={{ backgroundColor: "default.500" }}
+              _hover={{ backgroundColor: "black" }}
             >
               Signup
             </Button>
@@ -140,7 +142,7 @@ const SignupForm = ({ onClick }: Props) => {
             </Flex>
             <Flex direction={"column"} justify={"center"} align={"center"}>
               <Button
-                _hover={{ backgroundColor: "default.500" }}
+                _hover={{ backgroundColor: "black", transform: 'scale(0.98)' }}
                 type="button"
                 onSubmit={() => console.log("clicked")}
                 mt={"3rem"}
@@ -148,7 +150,7 @@ const SignupForm = ({ onClick }: Props) => {
                 color={"white"}
                 fontSize={"20px"}
                 h={"3rem"}
-                bg={"default.200"}
+                bg={"black"}
                 onClick={postUser}
               >
                 Signup
