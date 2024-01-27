@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, Spacer } from "@chakra-ui/react";
+import { Button, Flex, FormControl, Input, Spacer } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
@@ -24,6 +24,7 @@ const TaskForm = () => {
 
   return (
     <>
+    <Flex justify={'center'} align={'center'}>
       <form onSubmit={createTask} style={{ marginTop: "2rem" }}>
         <FormControl>
           <Input
@@ -32,7 +33,7 @@ const TaskForm = () => {
             variant={"flushed"}
             focusBorderColor={"black"}
             placeholder="Enter your daily tasks📃"
-            w={{ base: '410px', sm:  '448px', md: '560px'}}
+            w={{ base: '350px', md: '560px'}}
             value={namedTask}
             onChange={(e) => setNamedTask(e.target.value)}
             spellCheck={false}
@@ -43,7 +44,7 @@ const TaskForm = () => {
             _hover={{ bg: "white" }}
             variant={"outline"}
             border={"2px solid black"}
-            w={{ base: '410px', sm:  '448px', md: '560px'}}
+            w={{ base: '350px', md: '560px'}}
             h={"3rem"}
             type="submit"
           >
@@ -51,6 +52,7 @@ const TaskForm = () => {
           </Button>
         </FormControl>
       </form>
+      </Flex>
     </>
   );
 };

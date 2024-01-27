@@ -44,7 +44,7 @@ function EditModal({ task, _id }: Props) {
   return (
     <>
       <CiEdit onClick={onOpen} cursor={"pointer"} size={"26px"} />
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}}  onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit Task</ModalHeader>

@@ -26,6 +26,7 @@ const App = () => {
     <>
       <NavBar />
       <Flex
+        overflow={'hidden'}
         direction="column"
         justifyContent="center"
         alignItems="center"
@@ -36,7 +37,7 @@ const App = () => {
           columns={{ sm: 1, md: 2 }}
           placeContent={"center"}
           justifyItems={"center"}
-          alignItems={"start"}
+          alignItems={{base: 'center', md: 'start'}}
           spacing={20}
           mb={"2rem"}
         >
@@ -45,7 +46,7 @@ const App = () => {
             placeSelf={{ base: "center", md: "end" }}
             minH={"100%"}
           >
-            <Flex direction="column" alignItems="center">
+            <Flex direction="column" alignItems="center" justify={'center'}>
               <TaskForm />
               {tasks?.map((item) => (
                 <TaskItem key={item._id} task={item.name} _id={item._id} />

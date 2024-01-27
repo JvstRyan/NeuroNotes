@@ -35,7 +35,7 @@ function DeleteModal({ _id, task}: Props) {
       <>
         <RxCross2 onClick={onOpen} cursor={'pointer'} size={'26px'}/>
         <Modal
-        
+          size={{base: 'sm', md: 'lg'}}
           onClose={onClose}
           isOpen={isOpen}
           motionPreset='slideInBottom'
