@@ -23,7 +23,7 @@ const handleCheckBox = () => {
           <Flex  h={'15px'} justify={'space-between'} align={'center'}>
           <Flex gap={'1rem'} align={'center'} justify={'center'}>
           <Checkbox colorScheme="green" onChange={handleCheckBox} />
-          <Text as={isChecked ? 'del' : 'b'} fontWeight={'600'}  fontSize={'18px'}>{task}</Text>
+          <Text isTruncated as={isChecked ? 'del' : 'b'} fontWeight={'600'}  fontSize={'18px'}>{task}</Text>
           </Flex>
           <Flex gap={'1rem'}>
          {!isChecked && <EditModal task={task} _id={_id} /> }

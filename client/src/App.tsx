@@ -57,6 +57,7 @@ const App = () => {
             colSpan={1}
             placeSelf={{ base: "center", md: "start" }}
             minH={"100%"}
+            mb={{base: '1rem', md: '0px'}}
           >
             <Flex
               direction="column"

@@ -27,7 +27,7 @@ const GoalForm = () => {
 
   return (
     <>
-    <Flex justify={'center'} align={'center'} mt={{base: '-56px', md:'33px'}}>
+    <Flex justify={'center'} align={'center'} mt={{base: '-20px', md: '2.1rem'}}>
       <form onSubmit={createGoal}>
         <FormControl>
           <Input
@@ -36,13 +36,13 @@ const GoalForm = () => {
             variant={'flushed'}
             focusBorderColor={'black'}
             placeholder="Enter your yearly goals🏋️‍♂️"
-            w={{base: '24rem', sm:  '28rem', md: '35rem'}}
+            w={{ base: '350px', md: '560px'}}
             value={namedGoal}
             onChange={(e) => setNamedGoal(e.target.value)}
             spellCheck={false}
           ></Input>
           <Spacer h={"1rem"} />
-          <Button _active={{transform: 'scale(0.98)', bg: 'white'}} _hover={{bg: 'white'}} variant={'outline'} border={'2px solid black'} w={{base: '24rem', sm:  '28rem', md: '35rem'}} h={"3rem"} type="submit">
+          <Button _active={{transform: 'scale(0.98)', bg: 'white'}} _hover={{bg: 'white'}} variant={'outline'} border={'2px solid black'} w={{ base: '350px', md: '560px'}} h={"3rem"} type="submit">
           <FaPlus />
           </Button>
         </FormControl>

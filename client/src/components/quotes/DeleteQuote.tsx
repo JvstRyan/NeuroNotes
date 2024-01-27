@@ -40,7 +40,7 @@ const DeleteQuote = ({ id, person }: Props) => {
       <Button onClick={onOpen} bg={"default.100"} mb={"1rem"} alignItems={"center"} gap={"5px"}>
         Remove Quote
       </Button>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
+      <Modal size={{base: 'sm', md: 'lg'}} onClose={onClose} isOpen={isOpen} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Delete Quote</ModalHeader>
