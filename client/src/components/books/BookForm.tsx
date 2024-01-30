@@ -32,7 +32,7 @@ const BookForm = () => {
       >
         Books
       </Text>
-      <Flex mb={'1rem'} mt={"5px"} justify={"space-between"} align={"center"}>
+      <Flex mt={"5px"} justify={"space-between"} align={"center"}>
         <Flex>
           <Flex direction={"column"}>
             <Button
@@ -76,9 +76,7 @@ const BookForm = () => {
         </Flex>
         <CreateBook />
       </Flex>
-      <Box w={"100%"}>
         <Divider borderColor={"black"} w={{base: '0px', md: "100%"}} />
-      </Box>
       <SimpleGrid
           columns={{ sm: 1, md: 3 }}
           alignItems={"center"}
