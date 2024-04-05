@@ -23,6 +23,8 @@ import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { patchNotes } from "../../api/note-requests";
 import DeleteNotes from "./DeleteNotes";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface Props {
   title: string;
@@ -58,15 +60,20 @@ const NotesItem = ({
     const description =
       noteDescription !== "" ? noteDescription : propDescription;
     const content = noteContent !== "" ? noteContent : propContent;
-    if (noteTitle !== propTitle || noteDescription !== propDescription || noteContent !== propContent) {
-    mutation.mutate({ id: _id, body: { title, description, content } });
+    if (
+      noteTitle !== propTitle ||
+      noteDescription !== propDescription ||
+      noteContent !== propContent
+    ) {
+      mutation.mutate({ id: _id, body: { title, description, content } });
     }
     onClose();
   };
 
+
   return (
     <>
-      <Card  w={{base: '350px'}} minH={"xs"} borderRadius={"10px"}>
+      <Card w={{ base: "350px" }} minH={"xs"} borderRadius={"10px"}>
         <CardHeader>
           <Flex justify={"space-between"} align={"center"}>
             <Text size={"15px"} fontWeight={"600"} color={"#5C5C5C"}>
@@ -99,17 +106,6 @@ const NotesItem = ({
           </Flex>
         </CardHeader>
         <CardBody>
-          <Flex align={"center"} justify={"start"}>
-            <Text
-              onClick={onOpen}
-              cursor={"pointer"}
-              size={"md"}
-              pr={"25px"}
-              noOfLines={3}
-            >
-              {propContent}
-            </Text>
-          </Flex>
         </CardBody>
         <CardFooter
           bg={"#5C5C5C"}
@@ -129,7 +125,7 @@ const NotesItem = ({
         isOpen={isOpen}
         placement="right"
         onClose={() => updateNotes(_id)}
-        size="md"
+        size="lg"
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -153,8 +149,8 @@ const NotesItem = ({
             spellCheck={false}
           ></Textarea>
           <Divider />
-          <DrawerBody>
-            <Textarea
+          <DrawerBody mt={"1rem"}>
+            {/* <Textarea
               color={"black"}
               h={"100%"}
               w={"100%"}
@@ -165,7 +161,8 @@ const NotesItem = ({
               onChange={(e) => setNoteContent(e.target.value)}
               placeholder="Start writing your note!"
               spellCheck={false}
-            ></Textarea>
+            ></Textarea> */}
+            <ReactQuill style={{height: '100%', width: '100%', padding: '0px'}} theme="snow" value={noteContent} onChange={setNoteContent} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

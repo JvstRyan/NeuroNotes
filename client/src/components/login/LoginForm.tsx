@@ -58,7 +58,7 @@ const LoginForm = () => {
     <Flex>
       {loginForm && (
         <Box width={["100%", "100%", "50%", "30%"]} p={5}>
-          <Flex direction={"column"} justify={"center"} align={"center"}>
+          <Flex direction={"column"} justify={"center"} align={"center"} mt={"3rem"}>
             <Flex mt={{base: '2rem', md: '1rem'}} justify={"center"} align={"center"}>
             {mutation.status === 'pending' ? '' : <Image boxSize={"8rem"} src="/NeuroNotes.png" draggable={false} />}
             {mutation.status === 'pending' ? <Spinner /> : ''}
